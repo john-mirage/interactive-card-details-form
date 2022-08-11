@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/src/images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Primary Meta Tags -->
+  <title>Interactive card details form</title>
+  <meta name="title" content="Interactive card details form">
+  <meta name="description" content="This fun project will be an excellent way to practice DOM manipulation and form validation while also putting your HTML and CSS skills to the test.">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://john-mirage.github.io/interactive-card-details-form/">
+  <meta property="og:title" content="Interactive card details form">
+  <meta property="og:description" content="This fun project will be an excellent way to practice DOM manipulation and form validation while also putting your HTML and CSS skills to the test.">
+  <meta property="og:image" content="https://john-mirage.github.io/interactive-card-details-form/preview.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://john-mirage.github.io/interactive-card-details-form/">
+  <meta property="twitter:title" content="Interactive card details form">
+  <meta property="twitter:description" content="This fun project will be an excellent way to practice DOM manipulation and form validation while also putting your HTML and CSS skills to the test.">
+  <meta property="twitter:image" content="https://john-mirage.github.io/interactive-card-details-form/preview.jpg">
+</head>
+
+<body class="relative min-h-screen">
+  <!-- background image -->
+  <div class="absolute z-10 top-0 left-0 w-full h-240 bg-main-mobile bg-no-repeat bg-cover md:h-512"></div>
+
+  <!-- app -->
+  <div id="app"></div>
+
+  <!-- template | app root -->
+  <template id="template-app-root">
+    <main class="mx-auto container px-16 pt-32 md:pt-68">
+      <app-card class="relative z-50 flex flex-col"></app-card>
+      <app-form></app-form>
+    </main>
+  </template>
+
+  <!-- template | app card -->
+  <template id="template-app-card">
+    <div class="flex-none ml-auto relative">
+      <img class="w-286 md:w-512" src="/src/images/bg-card-back.png" alt="">
+      <svg class="absolute top-0 left-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 447 245">
+        <text class="fill-white font-500 text-[14px] tracking-[2px] uppercase" x="360" y="126" data-name="card-cvc">000</text>
+      </svg>
+    </div>
+    <div class="-mt-[20%] flex-none mr-auto relative xs:-mt-68 md:-mt-128">
+      <img class="w-286 md:w-512" src="/src/images/bg-card-front.png" alt="">
+      <svg class="absolute top-0 left-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 447 245">
+        <image x="20" y="20" href="/src/images/card-logo.svg" width="84" height="47"/>
+        <text class="fill-white font-500 text-[30px] tracking-[4px]" x="20" y="164" data-name="card-number">0000 0000 0000 0000</text>
+        <text class="fill-white font-500 text-[14px] tracking-[2px] uppercase" x="20" y="214" data-name="card-holder">jane appleseed</text>
+        <text class="fill-white font-500 text-[14px] tracking-[2px]" x="380" y="214" data-name="card-expiration-date">00/00</text>
+      </svg>
+    </div>
+  </template>
+
+  <!-- template | app form -->
+  <template id="template-app-form"></template>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
