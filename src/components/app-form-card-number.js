@@ -17,6 +17,10 @@ class AppFormCardNumber extends HTMLElement {
     this.inputElement.addEventListener("keyup", this.handleInputKeyUp);
   }
 
+  disconnectedCallback() {
+    this.inputElement.removeEventListener("keyup", this.handleInputKeyUp);
+  }
+
   handleInputKeyUp(event) {
     const cardNumberFromInput = event.target.value;
     if (typeof cardNumberFromInput === "string") {
