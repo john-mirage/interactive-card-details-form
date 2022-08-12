@@ -5,6 +5,7 @@ class AppForm extends HTMLElement {
     super();
     this.initialCall = true;
     this.formElement = template.content.firstElementChild.cloneNode(true);
+    this.buttonElement = this.formElement.querySelector('[data-name="button"]');
   }
 
   connectedCallback() {
