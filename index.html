@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 
 <head>
   <meta charset="UTF-8" />
@@ -29,31 +29,34 @@
   <meta property="twitter:image" content="https://john-mirage.github.io/interactive-card-details-form/preview.jpg">
 </head>
 
-<body class="relative min-h-screen">
+<body class="relative min-h-screen lg:flex lg:justify-center lg:items-center">
   <!-- background image -->
-  <div class="absolute z-10 top-0 left-0 w-full h-240 bg-main-mobile bg-no-repeat bg-cover md:h-512"></div>
+  <picture class="absolute z-10 top-0 left-0 w-full xs:h-240 md:h-[364px] lg:w-[calc(50%-240px)] lg:h-full xl:w-[calc(50%-200px)]">
+    <source srcset="/src/images/bg-main-desktop.png" media="(min-width: 992px)">
+    <img class="w-full xs:h-full xs:object-cover" src="/src/images/bg-main-mobile.png" alt="" />
+  </picture>
 
   <!-- app -->
-  <div id="app"></div>
+  <div class="w-full" id="app"></div>
 
   <!-- template | app root -->
   <template id="template-app-root">
-    <main class="mx-auto container px-16 pt-32 md:pt-68">
-      <app-card class="mb-48 relative z-50 flex flex-col"></app-card>
-      <app-form></app-form>
+    <main class="mx-auto container px-16 py-32 md:px-24 md:py-68 lg:flex lg:flex-row lg:items-center lg:px-32">
+      <app-card class="mb-48 relative z-50 flex flex-col lg:w-full lg:flex-1"></app-card>
+      <app-form class="lg:ml-64 lg:flex-none lg:w-[380px] xl:ml-128"></app-form>
     </main>
   </template>
 
   <!-- template | app card -->
   <template id="template-app-card">
-    <div class="flex-none ml-auto relative">
-      <img class="w-286 md:w-512" src="/src/images/bg-card-back.png" alt="">
+    <div class="flex-none ml-auto relative lg:order-2 xl:w-[447px]">
+      <img class="w-286 md:w-[447px]" src="/src/images/bg-card-back.png" alt="">
       <svg class="absolute top-0 left-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 447 245">
         <text class="fill-white font-500 text-[14px] tracking-[2px] uppercase" x="360" y="126" data-name="card-cvc">000</text>
       </svg>
     </div>
-    <div class="-mt-[20%] flex-none mr-auto relative xs:-mt-68 md:-mt-128">
-      <img class="w-286 md:w-512" src="/src/images/bg-card-front.png" alt="">
+    <div class="-mt-[20%] flex-none mr-auto relative xs:-mt-68 md:-mt-[108px] lg:mt-0 lg:mb-48 lg:order-1 xl:w-[447px]">
+      <img class="w-286 md:w-[447px]" src="/src/images/bg-card-front.png" alt="">
       <svg class="absolute top-0 left-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 447 245">
         <image x="20" y="20" href="/src/images/card-logo.svg" width="84" height="47"/>
         <text class="fill-white font-500 text-[30px] tracking-[4px]" x="20" y="164" data-name="card-number">0000 0000 0000 0000</text>
@@ -65,7 +68,7 @@
 
   <!-- template | app form -->
   <template id="template-app-form">
-    <form class="grid grid-cols-2 gap-16">
+    <form class="grid grid-cols-2 gap-16 lg:gap-32">
       <label class="col-span-2">
         <h2 class="mb-8 text-very-dark-violet text-xs font-500 tracking-[2px] uppercase">cardholder name</h2>
         <input class="w-full h-44 border border-light-grayish-violet rounded-lg text-lg font-500 placeholder:text-dark-grayish-violet" type="text" name="cardHolder" placeholder="e.g. Jane Appleseed" data-name="card-holder">

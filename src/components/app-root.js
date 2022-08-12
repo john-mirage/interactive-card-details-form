@@ -9,6 +9,7 @@ class AppRoot extends HTMLElement {
 
   connectedCallback() {
     if (this.initialCall) {
+      this.classList.add("block", "w-full");
       this.append(this.mainElement);
       this.initialCall = false;
     }
