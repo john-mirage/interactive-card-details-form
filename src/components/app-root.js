@@ -35,19 +35,6 @@ class AppRoot extends HTMLElement {
     this.removeEventListener("update-card-cvc", this.handleCardCvc);
   }
 
-  handleCardHolder(customEvent) {
-    if (customEvent instanceof CustomEvent) {
-      const { holder } = customEvent.detail;
-      if (typeof holder === "string") {
-         this.appCard.appCardFront.cardHolder = holder;
-      } else {
-        throw new Error("The card holder is not a string");
-      }
-    } else {
-      throw new Error("The parameter must be a custom event");
-    }
-  }
-
   handleCardNumber(customEvent) {
     if (customEvent instanceof CustomEvent) {
       const { cardNumber } = customEvent.detail;
@@ -61,11 +48,24 @@ class AppRoot extends HTMLElement {
     }
   }
 
+  handleCardHolder(customEvent) {
+    if (customEvent instanceof CustomEvent) {
+      const { holder } = customEvent.detail;
+      if (typeof holder === "string") {
+         this.appCard.appCardFront.cardHolder = holder;
+      } else {
+        throw new Error("The card holder is not a string");
+      }
+    } else {
+      throw new Error("The parameter must be a custom event");
+    }
+  }
+
   handleCardExpirationDateMonth(customEvent) {
     if (customEvent instanceof CustomEvent) {
-      const { month } = customEvent.detail;
-      if (typeof month === "string") {
-         this.appCard.appCardFront.cardExpirationDateMonth = month;
+      const { cardExpirationDateMonth } = customEvent.detail;
+      if (typeof cardExpirationDateMonth === "string") {
+         this.appCard.appCardFront.cardExpirationDateMonth = cardExpirationDateMonth;
       } else {
         throw new Error("The card expiration date month is not a string");
       }
@@ -76,9 +76,9 @@ class AppRoot extends HTMLElement {
 
   handleCardExpirationDateYear(customEvent) {
     if (customEvent instanceof CustomEvent) {
-      const { year } = customEvent.detail;
-      if (typeof year === "string") {
-         this.appCard.appCardFront.cardExpirationDateYear = year;
+      const { cardExpirationDateYear } = customEvent.detail;
+      if (typeof cardExpirationDateYear === "string") {
+         this.appCard.appCardFront.cardExpirationDateYear = cardExpirationDateYear;
       } else {
         throw new Error("The card expiration date year is not a string");
       }
@@ -89,9 +89,9 @@ class AppRoot extends HTMLElement {
 
   handleCardCvc(customEvent) {
     if (customEvent instanceof CustomEvent) {
-      const { cvc } = customEvent.detail;
-      if (typeof cvc === "string") {
-         this.appCard.appCardBack.cardCvc = cvc;
+      const { cardCvc } = customEvent.detail;
+      if (typeof cardCvc === "string") {
+         this.appCard.appCardBack.cardCvc = cardCvc;
       } else {
         throw new Error("The card cvc is not a string");
       }

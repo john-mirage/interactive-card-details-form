@@ -84,28 +84,13 @@ class AppFormCardExpirationDate extends HTMLElement {
     this.yearInputElement.removeEventListener("keyup", this.handleYearInputKeyUp);
   }
 
-  computeCardExpirationDatePeriod(periodValue) {
-    if (typeof periodValue === "string") {
-      const emptyCardExpirationDatePeriod = ["0", "0"];
-      const cardExpirationDatePeriodAsArray = emptyCardExpirationDatePeriod.map((char, charIndex) => {
-        return periodValue[charIndex] ? periodValue[charIndex].toUpperCase() : char;
-      });
-      return cardExpirationDatePeriodAsArray.join("");
-    } else {
-      throw new Error("invalid parameter");
-    }
-  }
-
   handleMonthInputKeyUp(event) {
-    const monthFromInput = event.target.value;
-    if (typeof monthFromInput === "string") {
+    const cardExpirationDateMonth = event.target.value;
+    if (typeof cardExpirationDateMonth === "string") {
       this.validateMonthInput();
-      const newMonth = this.computeCardExpirationDatePeriod(monthFromInput);
       const customEvent = new CustomEvent("update-card-expiration-date-month", {
         bubbles: true,
-        detail: {
-          month: newMonth,
-        }
+        detail: { cardExpirationDateMonth }
       });
       const formCustomEvent = new CustomEvent("update-form", { bubbles: true });
       this.dispatchEvent(customEvent);
@@ -116,15 +101,12 @@ class AppFormCardExpirationDate extends HTMLElement {
   }
 
   handleYearInputKeyUp(event) {
-    const yearFromInput = event.target.value;
-    if (typeof yearFromInput === "string") {
+    const cardExpirationDateYear = event.target.value;
+    if (typeof cardExpirationDateYear === "string") {
       this.validateYearInput();
-      const newYear = this.computeCardExpirationDatePeriod(yearFromInput);
       const customEvent = new CustomEvent("update-card-expiration-date-year", {
         bubbles: true,
-        detail: {
-          year: newYear,
-        }
+        detail: { cardExpirationDateYear }
       });
       const formCustomEvent = new CustomEvent("update-form", { bubbles: true });
       this.dispatchEvent(customEvent);

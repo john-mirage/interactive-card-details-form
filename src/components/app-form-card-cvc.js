@@ -57,15 +57,12 @@ class AppFormCardCvc extends HTMLElement {
   }
 
   handleInputKeyUp(event) {
-    const cvc = event.target.value;
-    if (typeof cvc === "string") {
+    const cardCvc = event.target.value;
+    if (typeof cardCvc === "string") {
       this.validateInput();
-      const newCvc = this.computeCardCvc(cvc);
       const customEvent = new CustomEvent("update-card-cvc", {
         bubbles: true,
-        detail: {
-          cvc: newCvc,
-        }
+        detail: { cardCvc }
       });
       const formCustomEvent = new CustomEvent("update-form", { bubbles: true });
       this.dispatchEvent(customEvent);

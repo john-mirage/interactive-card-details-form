@@ -18,8 +18,16 @@ class AppCardBack extends HTMLElement {
   }
 
   set cardCvc(cardCvc) {
-    this._cardCvc = cardCvc;
-    this.cardCvcElement.textContent = this.cardCvc;
+    if (typeof cardCvc === "string") {
+      const emptyCardCvc = ["0", "0", "0"];
+      const cardCvcAsArray = emptyCardCvc.map((char, charIndex) => {
+        return cardCvc[charIndex] ? cardCvc[charIndex].toUpperCase() : char;
+      });
+      this._cardCvc = cardCvcAsArray.join("");
+      this.cardCvcElement.textContent = this.cardCvc;
+    } else {
+      throw new Error("invalid parameter");
+    }
   }
 
   connectedCallback() {

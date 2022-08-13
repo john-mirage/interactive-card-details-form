@@ -68,13 +68,29 @@ class AppCardFront extends HTMLElement {
   }
 
   set cardExpirationDateMonth(cardExpirationDateMonth) {
-    this._cardExpirationDateMonth = cardExpirationDateMonth;
-    this.cardExpirationDateMonthElement.textContent = this.cardExpirationDateMonth;
+    if (typeof cardExpirationDateMonth === "string") {
+      const emptyCardExpirationDatePeriod = ["0", "0"];
+      const cardExpirationDatePeriodAsArray = emptyCardExpirationDatePeriod.map((char, charIndex) => {
+        return cardExpirationDateMonth[charIndex] ? cardExpirationDateMonth[charIndex].toUpperCase() : char;
+      });
+      this._cardExpirationDateMonth = cardExpirationDatePeriodAsArray.join("");
+      this.cardExpirationDateMonthElement.textContent = this.cardExpirationDateMonth;
+    } else {
+      throw new Error("invalid parameter");
+    }
   }
 
   set cardExpirationDateYear(cardExpirationDateYear) {
-    this._cardExpirationDateYear = cardExpirationDateYear;
-    this.cardExpirationDateYearElement.textContent = this.cardExpirationDateYear;
+    if (typeof cardExpirationDateYear === "string") {
+      const emptyCardExpirationDatePeriod = ["0", "0"];
+      const cardExpirationDatePeriodAsArray = emptyCardExpirationDatePeriod.map((char, charIndex) => {
+        return cardExpirationDateYear[charIndex] ? cardExpirationDateYear[charIndex].toUpperCase() : char;
+      });
+      this._cardExpirationDateYear = cardExpirationDatePeriodAsArray.join("");
+      this.cardExpirationDateYearElement.textContent = this.cardExpirationDateYear;
+    } else {
+      throw new Error("invalid parameter");
+    }
   }
 
   connectedCallback() {
