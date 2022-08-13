@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABO1BMVEUAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////l9Pff8fS54ein2eOn2eL9/v684unr9vj7/f7c8PSl2eKHzNil2OLv+Prz+vue1eB3xdOq2uPm9Pf29/vy8/n3/Py13+eEyteZ097P6u/2+/zByeKOm8r8/f7u+Pq+4+qOz9uU0dzo9fjb4O5meLbh5fH0+vvV7fHx+fv8/P2Gk8Wbps+44eim2eLW2+xkdrXO1Oit3OWttthperja3u7u+Pn6+/2hrNJneLfFy+P7+/23v92IlcbN0ufx8/nj5/Kbp9BsfbltfrqAj8ORnsvg5PD+/v/v8ffQ1em0vduqtNfn6vS/61TcAAAAHHRSTlMAAAQqbK3Z8v0DN5ff+xqJ6jbC/kHBAjjp3qz8qSKHsgAAAAFiS0dEAf8CLd4AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiChMPAx5FOtlkAAABSUlEQVQ4y4WTZ2OCMBCGc4IMEXAPjB10771t7dLuXbv3/v+/oNigIYjN+4HcJU9CcgMhVxASxLAkK4oshUUhBIgVqBEtqmNXelSLqF4EwDBjmFHMNADoejyRxD4lE/EGAZCScICkFCGc/YHrDkHOACON2yhtOABkTNxWZgYQZHPeqWKH18tlAakas6ezi3E1FQl5Fuhm3LyARD0AsIs9vSSmIrJwC9DXPzA4NEx8C0ktwMjo2PiE3YgFkokxOdUEpmdm5+YXXEBGCjEWl5bpHVZKq2tlMq+gAjHWNza9r9jarpD5QuMX1Z3dv3Fvn72T3LzkweFRfSgd+xJGn3lyeuZ8K+csYNFAXVzWrqr+bDmBoqG+vqnd3t3bDOCE2push8en55fXNzZZTLrfPz6/vn+oX083t2C4JccvWm7Z8xuH33r85v2v/X8Bp/FiyVLnL/0AAAAldEVYdGRhdGU6Y3JlYXRlADIwMTgtMTAtMTlUMTU6MDM6MzArMDI6MDCzEaEaAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE4LTEwLTE5VDE1OjAzOjMwKzAyOjAwwkwZpgAAAFd6VFh0UmF3IHByb2ZpbGUgdHlwZSBpcHRjAAB4nOPyDAhxVigoyk/LzEnlUgADIwsuYwsTIxNLkxQDEyBEgDTDZAMjs1Qgy9jUyMTMxBzEB8uASKBKLgDqFxF08kI1lQAAAABJRU5ErkJggg==" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Primary Meta Tags -->
+  <title>Interactive card details form</title>
+  <meta name="title" content="Interactive card details form">
+  <meta name="description" content="This fun project will be an excellent way to practice DOM manipulation and form validation while also putting your HTML and CSS skills to the test.">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://john-mirage.github.io/interactive-card-details-form/">
+  <meta property="og:title" content="Interactive card details form">
+  <meta property="og:description" content="This fun project will be an excellent way to practice DOM manipulation and form validation while also putting your HTML and CSS skills to the test.">
+  <meta property="og:image" content="https://john-mirage.github.io/interactive-card-details-form/preview.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://john-mirage.github.io/interactive-card-details-form/">
+  <meta property="twitter:title" content="Interactive card details form">
+  <meta property="twitter:description" content="This fun project will be an excellent way to practice DOM manipulation and form validation while also putting your HTML and CSS skills to the test.">
+  <meta property="twitter:image" content="https://john-mirage.github.io/interactive-card-details-form/preview.jpg">
+  <script type="module" crossorigin src="/interactive-card-details-form/assets/index.921cbb66.js"></script>
+  <link rel="stylesheet" href="/interactive-card-details-form/assets/index.6b2102d8.css">
+</head>
+
+<body class="relative min-h-screen lg:flex lg:justify-center lg:items-center">
+  <!-- background image -->
+  <picture class="absolute z-10 top-0 left-0 w-full xs:h-240 md:h-[364px] lg:w-[calc(50%-240px)] lg:h-full xl:w-[calc(50%-200px)]">
+    <source srcset="/interactive-card-details-form/assets/bg-main-desktop.8bf4510a.png " media="(min-width: 992px)">
+    <img class="w-full xs:h-full xs:object-cover" src="/interactive-card-details-form/assets/bg-main-mobile.9e839c55.png" alt="" />
+  </picture>
+
+  <!-- app -->
+  <div class="w-full" id="app"></div>
+
+  <!-- template | app root -->
+  <template id="template-app-root">
+    <main class="mx-auto container px-16 py-32 md:px-24 md:py-68 lg:flex lg:flex-row lg:items-center lg:px-32">
+      <app-card class="mb-48 relative z-50 flex flex-col lg:w-full lg:flex-1"></app-card>
+      <app-form class="lg:ml-64 lg:flex-none lg:w-[380px] xl:ml-128"></app-form>
+    </main>
+  </template>
+
+  <!-- template | app card -->
+  <template id="template-app-card">
+    <app-card-back class=" block flex-none ml-auto relative lg:order-2 xl:w-[447px]"></app-card-back>
+    <app-card-front class="-mt-[20%] block flex-none mr-auto relative xs:-mt-68 md:-mt-[108px] lg:mt-0 lg:mb-48 lg:order-1 xl:w-[447px]"></app-card-front>
+  </template>
+
+  <!-- template | app card back -->
+  <template id="template-app-card-back">
+    <img class="w-286 md:w-[447px]" src="/interactive-card-details-form/assets/bg-card-back.503939c0.png" alt="">
+    <svg class="absolute top-0 left-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 447 245">
+      <text class="fill-white font-500 text-[14px] tracking-[2px] uppercase" x="360" y="126" data-name="card-cvc"></text>
+    </svg>
+  </template>
+
+  <!-- template | app card front -->
+  <template id="template-app-card-front">
+    <img class="w-286 md:w-[447px]" src="/interactive-card-details-form/assets/bg-card-front.5aca8db4.png" alt="">
+    <svg class="absolute top-0 left-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 447 245">
+      <image x="20" y="20" href="/interactive-card-details-form/assets/card-logo.c6ba498c.svg" width="84" height="47"/>
+      <text class="fill-white font-500 text-[30px] tracking-[4px]" x="20" y="164" data-name="card-number"></text>
+      <text class="fill-white font-500 text-[14px] tracking-[2px] uppercase" x="20" y="214" data-name="card-holder"></text>
+      <text class="fill-white font-500 text-[14px] tracking-[2px]" x="380" y="214">
+        <tspan data-name="card-expiration-date-month"></tspan>/<tspan data-name="card-expiration-date-year"></tspan></text>
+      </svg>
+  </template>
+
+  <!-- template | app form -->
+  <template id="template-app-form">
+    <form class="grid grid-cols-2 gap-16 lg:gap-y-32">
+      <app-form-card-holder class="col-span-2"></app-form-card-holder>
+      <app-form-card-number class="col-span-2"></app-form-card-number>
+      <app-form-card-expiration-date class="col-span-2 xs:col-span-1"></app-form-card-expiration-date>
+      <app-form-card-cvc class="col-span-2 xs:col-span-1"></app-form-card-cvc>
+      <button type="button" class="col-span-2 w-full h-56 rounded-lg bg-very-dark-violet/20 text-white text-lg" disabled data-name="button">Confirm</button>
+    </form>
+  </template>
+
+  <!-- template | app form card holder -->
+  <template id="template-app-form-card-holder">
+    <label>
+      <h2 class="mb-8 text-very-dark-violet text-xs font-500 tracking-[2px] uppercase">cardholder name</h2>
+      <div class="relative w-full h-48">
+        <input
+          class="absolute z-20 inset-0 px-20 bg-transparent border-none text-lg font-500 peer placeholder:text-dark-grayish-violet focus-visible:ring-0"
+          type="text"
+          name="cardHolder"
+          placeholder="e.g. Jane Appleseed"
+          data-name="input"
+          required
+          pattern="^[a-zA-Z]+ [a-zA-Z]+$"
+        >
+        <div class="absolute z-auto inset-0 border border-transparent bg-white bg-clip-padding rounded-lg before:absolute before:inset-0 before:-z-10 before:-m-1 before:rounded-lg before:bg-light-grayish-violet peer-focus-visible:before:bg-gradient-to-tr peer-focus-visible:before:from-input-active-left peer-focus-visible:before:to-input-active-right" data-name="input-border"></div>
+      </div>
+    </label>
+  </template>
+
+  <!-- template | app form card number -->
+  <template id="template-app-form-card-number">
+    <label>
+      <h2 class="mb-8 text-very-dark-violet text-xs font-500 tracking-[2px] uppercase">card number</h2>
+      <div class="relative w-full h-48">
+        <input
+          class="absolute z-20 inset-0 px-20 bg-transparent border-none text-lg font-500 peer placeholder:text-dark-grayish-violet focus-visible:ring-0"
+          type="text"
+          name="cardNumber"
+          placeholder="e.g. 1234 5678 9123 0000"
+          data-name="input"
+          required
+          minlength="16"
+          maxlength="16"
+          pattern="^[0-9]{16}$"
+        >
+        <div class="absolute z-auto inset-0 border border-transparent bg-white bg-clip-padding rounded-lg before:absolute before:inset-0 before:-z-10 before:-m-1 before:rounded-lg before:bg-light-grayish-violet peer-focus-visible:before:bg-gradient-to-tr peer-focus-visible:before:from-input-active-left peer-focus-visible:before:to-input-active-right" data-name="input-border"></div>
+      </div>
+    </label>
+  </template>
+
+  <!-- template | app form card expiration date -->
+  <template id="template-app-form-card-expiration-date">
+    <div>
+      <h2 class="mb-8 text-very-dark-violet text-xs font-500 tracking-[2px] uppercase">exp. date (mm/yy)</h2>
+      <div class="flex flex-row items-center">
+        <label class="mr-8 flex-1 relative w-full h-48">
+          <h3 class="sr-only">expiration date month</h3>
+          <input
+            class="absolute z-20 inset-0 px-20 bg-transparent border-none text-lg font-500 peer placeholder:text-dark-grayish-violet focus-visible:ring-0 placeholder:uppercase"
+            type="text"
+            name="cardExpirationDateMonth"
+            placeholder="mm"
+            data-name="month-input"
+            required
+            minlength="2"
+            maxlength="2"
+            pattern="^0[0-9]$|^1[0-2]$"
+          >
+          <div class="absolute z-auto inset-0 border border-transparent bg-white bg-clip-padding rounded-lg before:absolute before:inset-0 before:-z-10 before:-m-1 before:rounded-lg before:bg-light-grayish-violet peer-focus-visible:before:bg-gradient-to-tr peer-focus-visible:before:from-input-active-left peer-focus-visible:before:to-input-active-right" data-name="month-input-border"></div>
+        </label>
+        <label class="ml-8 flex-1 relative w-full h-48">
+          <h3 class="sr-only">expiration date year</h3>
+          <input
+            class="absolute z-20 inset-0 px-20 bg-transparent border-none text-lg font-500 peer placeholder:text-dark-grayish-violet focus-visible:ring-0 placeholder:uppercase"
+            type="text"
+            name="cardExpirationDateYear"
+            placeholder="yy"
+            data-name="year-input"
+            required
+            minlength="2"
+            maxlength="2"
+            pattern="^[2-9][2-9]$"
+          >
+          <div class="absolute z-auto inset-0 border border-transparent bg-white bg-clip-padding rounded-lg before:absolute before:inset-0 before:-z-10 before:-m-1 before:rounded-lg before:bg-light-grayish-violet peer-focus-visible:before:bg-gradient-to-tr peer-focus-visible:before:from-input-active-left peer-focus-visible:before:to-input-active-right" data-name="year-input-border"></div>
+        </label>
+      </div>
+    </div>
+  </template>
+
+  <!-- template | app form card cvc -->
+  <template id="template-app-form-card-cvc">
+    <label>
+      <h2 class="mb-8 text-very-dark-violet text-xs font-500 tracking-[2px] uppercase">cvc</h2>
+      <div class="relative w-full h-48">
+        <input
+          class="absolute z-20 inset-0 px-20 bg-transparent border-none text-lg font-500 peer placeholder:text-dark-grayish-violet focus-visible:ring-0"
+          type="text"
+          name="cardCvc"
+          placeholder="e.g. 123"
+          data-name="input"
+          required
+          minlength="3"
+          maxlength="3"
+          pattern="^[0-9]{3}$"
+        >
+        <div class="absolute z-auto inset-0 border border-transparent bg-white bg-clip-padding rounded-lg before:absolute before:inset-0 before:-z-10 before:-m-1 before:rounded-lg before:bg-light-grayish-violet peer-focus-visible:before:bg-gradient-to-tr peer-focus-visible:before:from-input-active-left peer-focus-visible:before:to-input-active-right" data-name="input-border"></div>
+      </div>
+    </label>
+  </template>
+
+  <!-- template | app form error -->
+  <template id="template-app-form-error">
+    <p class="pt-4 text-xs font-500 text-input-error"></p>
+  </template>
+
+  <!-- template | app success -->
+  <template id="template-app-success">
+    <div class="text-center">
+      <svg class="mx-auto mb-40 w-80 h-80" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+        <circle cx="40" cy="40" r="40" fill="url(#a)"/>
+        <path d="M28 39.92 36.08 48l16-16" stroke="#fff" stroke-width="3"/>
+        <defs>
+          <linearGradient id="a" x1="-23.014" y1="11.507" x2="0" y2="91.507" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#6348FE"/>
+            <stop offset="1" stop-color="#610595"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <h2 class="mb-20 text-[28px] text-very-dark-violet font-500 uppercase tracking-[3.5px]">thank you!</h2>
+      <p class="mb-48 text-lg text-dark-grayish-violet font-500">We've added your card details</p>
+      <button class="w-full h-56 rounded-lg bg-very-dark-violet text-white text-lg">Continue</button>
+    </div>
+  </template>
+
+  
+</body>
+
+</html>
