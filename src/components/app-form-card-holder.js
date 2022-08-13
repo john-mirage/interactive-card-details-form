@@ -47,16 +47,7 @@ class AppFormCardHolder extends HTMLElement {
   handleInputKeyUp(event) {
     const newHolder = event.target.value;
     if (typeof newHolder === "string") {
-      if (this.inputElement.validity.valid) {
-        this.isValid = true;
-      } else {
-        this.isValid = false;
-        if (this.inputElement.validity.valueMissing) {
-          this.appFormError.message = "Can't be blank";
-        } else if (this.inputElement.validity.patternMismatch) {
-          this.appFormError.message = "Wrong format";
-        }
-      }
+      this.validateInput();
       const customEvent = new CustomEvent("update-card-holder", {
         bubbles: true,
         detail: {
@@ -68,6 +59,19 @@ class AppFormCardHolder extends HTMLElement {
       this.dispatchEvent(formCustomEvent);
     } else {
       throw new Error("the event value is not a string");
+    }
+  }
+
+  validateInput() {
+    if (this.inputElement.validity.valid) {
+      this.isValid = true;
+    } else {
+      this.isValid = false;
+      if (this.inputElement.validity.valueMissing) {
+        this.appFormError.message = "Can't be blank";
+      } else if (this.inputElement.validity.patternMismatch) {
+        this.appFormError.message = "Wrong format";
+      }
     }
   }
 }
