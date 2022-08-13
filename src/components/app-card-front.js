@@ -64,7 +64,7 @@ class AppCardFront extends HTMLElement {
   }
 
   set cardHolder(cardHolder) {
-    const cleanedCardHolder = cardHolder.length <= 0 ? "Jane Appleseed" : cardHolder.replaceAll(/[^a-zA-Z\s]+/g, "").trim();
+    const cleanedCardHolder = cardHolder.length <= 0 ? "Jane Appleseed" : cardHolder.replaceAll(/[^a-zA-Z ]+/g, "").trim();
     this._cardHolder = cleanedCardHolder;
     this.cardHolderElement.textContent = this.cardHolder.length <= 0 ? "Jane Appleseed" : this.cardHolder;
   }
