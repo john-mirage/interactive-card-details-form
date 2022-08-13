@@ -84,7 +84,7 @@ class AppFormCardCvc extends HTMLElement {
       } else if (this.inputElement.validity.tooLong) {
         this.appFormError.message = "Too long";
       } else if (this.inputElement.validity.patternMismatch) {
-        this.appFormError.message = "Wrong format";
+        this.appFormError.message = "Wrong format, numbers only";
       }
     }
   }

@@ -46,11 +46,12 @@ class AppCardFront extends HTMLElement {
 
   set cardNumber(cardNumber) {
     if (typeof cardNumber === "string") {
+      const cleanedCardNumber = cardNumber.replaceAll(/[^0-9]+/g, "");
       const emptyCardNumber = Array.from(["0", "0", "0", "0"], () => ["0", "0", "0", "0"]);
       const cardNumberAsArray = emptyCardNumber.map((group, groupIndex) => {
         return group.map((char, charIndex) => {
           const currentIndex = (groupIndex * 4) + charIndex;
-          return cardNumber[currentIndex] ? cardNumber[currentIndex].toUpperCase() : char;
+          return cleanedCardNumber[currentIndex] ? cleanedCardNumber[currentIndex].toUpperCase() : char;
         });
       });
       this._cardNumber = cardNumberAsArray.reduce((cardNumberAsString, group, groupIndex) => {
@@ -63,15 +64,17 @@ class AppCardFront extends HTMLElement {
   }
 
   set cardHolder(cardHolder) {
-    this._cardHolder = cardHolder;
-    this.cardHolderElement.textContent = this.cardHolder;
+    const cleanedCardHolder = cardHolder.length <= 0 ? "Jane Appleseed" : cardHolder.replaceAll(/[^a-zA-Z\s]+/g, "").trim();
+    this._cardHolder = cleanedCardHolder;
+    this.cardHolderElement.textContent = this.cardHolder.length <= 0 ? "Jane Appleseed" : this.cardHolder;
   }
 
   set cardExpirationDateMonth(cardExpirationDateMonth) {
     if (typeof cardExpirationDateMonth === "string") {
+      const cleanedCardExpirationDateMonth = cardExpirationDateMonth.replaceAll(/[^0-9]+/g, "");
       const emptyCardExpirationDatePeriod = ["0", "0"];
       const cardExpirationDatePeriodAsArray = emptyCardExpirationDatePeriod.map((char, charIndex) => {
-        return cardExpirationDateMonth[charIndex] ? cardExpirationDateMonth[charIndex].toUpperCase() : char;
+        return cleanedCardExpirationDateMonth[charIndex] ? cleanedCardExpirationDateMonth[charIndex].toUpperCase() : char;
       });
       this._cardExpirationDateMonth = cardExpirationDatePeriodAsArray.join("");
       this.cardExpirationDateMonthElement.textContent = this.cardExpirationDateMonth;
@@ -82,9 +85,10 @@ class AppCardFront extends HTMLElement {
 
   set cardExpirationDateYear(cardExpirationDateYear) {
     if (typeof cardExpirationDateYear === "string") {
+      const cleanedCardExpirationDateYear = cardExpirationDateYear.replaceAll(/[^0-9]+/g, "");
       const emptyCardExpirationDatePeriod = ["0", "0"];
       const cardExpirationDatePeriodAsArray = emptyCardExpirationDatePeriod.map((char, charIndex) => {
-        return cardExpirationDateYear[charIndex] ? cardExpirationDateYear[charIndex].toUpperCase() : char;
+        return cleanedCardExpirationDateYear[charIndex] ? cleanedCardExpirationDateYear[charIndex].toUpperCase() : char;
       });
       this._cardExpirationDateYear = cardExpirationDatePeriodAsArray.join("");
       this.cardExpirationDateYearElement.textContent = this.cardExpirationDateYear;

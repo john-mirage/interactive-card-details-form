@@ -115,7 +115,7 @@ class AppFormCardExpirationDate extends HTMLElement {
       } else if (this.monthInputElement.validity.tooShort || this.yearInputElement.validity.tooShort) {
         this.appFormError.message = "Too short";
       } else if (this.monthInputElement.validity.patternMismatch || this.yearInputElement.validity.patternMismatch) {
-        this.appFormError.message = "Wrong format";
+        this.appFormError.message = "Wrong format, dates only";
       }
     }
   }

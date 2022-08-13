@@ -45,14 +45,12 @@ class AppFormCardHolder extends HTMLElement {
   }
 
   handleInputKeyUp(event) {
-    const newHolder = event.target.value;
-    if (typeof newHolder === "string") {
+    const holder = event.target.value;
+    if (typeof holder === "string") {
       this.validateInput();
       const customEvent = new CustomEvent("update-card-holder", {
         bubbles: true,
-        detail: {
-          holder: newHolder === "" ? "Jane Appleseed" : newHolder,
-        }
+        detail: { holder }
       });
       const formCustomEvent = new CustomEvent("update-form", { bubbles: true });
       this.dispatchEvent(customEvent);
@@ -70,7 +68,7 @@ class AppFormCardHolder extends HTMLElement {
       if (this.inputElement.validity.valueMissing) {
         this.appFormError.message = "Can't be blank";
       } else if (this.inputElement.validity.patternMismatch) {
-        this.appFormError.message = "Wrong format";
+        this.appFormError.message = "Wrong format, letters and spaces only";
       }
     }
   }

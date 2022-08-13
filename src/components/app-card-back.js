@@ -19,9 +19,10 @@ class AppCardBack extends HTMLElement {
 
   set cardCvc(cardCvc) {
     if (typeof cardCvc === "string") {
+      const cleanedCardCvc = cardCvc.replaceAll(/[^0-9]+/g, "");
       const emptyCardCvc = ["0", "0", "0"];
       const cardCvcAsArray = emptyCardCvc.map((char, charIndex) => {
-        return cardCvc[charIndex] ? cardCvc[charIndex].toUpperCase() : char;
+        return cleanedCardCvc[charIndex] ? cleanedCardCvc[charIndex].toUpperCase() : char;
       });
       this._cardCvc = cardCvcAsArray.join("");
       this.cardCvcElement.textContent = this.cardCvc;
