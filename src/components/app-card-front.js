@@ -45,8 +45,21 @@ class AppCardFront extends HTMLElement {
   }
 
   set cardNumber(cardNumber) {
-    this._cardNumber = cardNumber;
-    this.cardNumberElement.textContent = this.cardNumber;
+    if (typeof cardNumber === "string") {
+      const emptyCardNumber = Array.from(["0", "0", "0", "0"], () => ["0", "0", "0", "0"]);
+      const cardNumberAsArray = emptyCardNumber.map((group, groupIndex) => {
+        return group.map((char, charIndex) => {
+          const currentIndex = (groupIndex * 4) + charIndex;
+          return cardNumber[currentIndex] ? cardNumber[currentIndex].toUpperCase() : char;
+        });
+      });
+      this._cardNumber = cardNumberAsArray.reduce((cardNumberAsString, group, groupIndex) => {
+        return `${cardNumberAsString}${groupIndex <= 0 ? "" : " "}${group.join("")}`;
+      }, "");
+      this.cardNumberElement.textContent = this.cardNumber;
+    } else {
+      throw new Error("invalid parameter");
+    }
   }
 
   set cardHolder(cardHolder) {
@@ -54,13 +67,13 @@ class AppCardFront extends HTMLElement {
     this.cardHolderElement.textContent = this.cardHolder;
   }
 
-  set cardExpirationDateMonth(month) {
-    this._cardExpirationDateMonth = month;
+  set cardExpirationDateMonth(cardExpirationDateMonth) {
+    this._cardExpirationDateMonth = cardExpirationDateMonth;
     this.cardExpirationDateMonthElement.textContent = this.cardExpirationDateMonth;
   }
 
-  set cardExpirationDateYear(year) {
-    this._cardExpirationDateYear = year;
+  set cardExpirationDateYear(cardExpirationDateYear) {
+    this._cardExpirationDateYear = cardExpirationDateYear;
     this.cardExpirationDateYearElement.textContent = this.cardExpirationDateYear;
   }
 

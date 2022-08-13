@@ -84,6 +84,8 @@ class AppFormCardCvc extends HTMLElement {
         this.appFormError.message = "Can't be blank";
       } else if (this.inputElement.validity.tooShort) {
         this.appFormError.message = "Too short";
+      } else if (this.inputElement.validity.tooLong) {
+        this.appFormError.message = "Too long";
       } else if (this.inputElement.validity.patternMismatch) {
         this.appFormError.message = "Wrong format";
       }

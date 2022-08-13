@@ -107,7 +107,9 @@ class AppFormCardExpirationDate extends HTMLElement {
           month: newMonth,
         }
       });
+      const formCustomEvent = new CustomEvent("update-form", { bubbles: true });
       this.dispatchEvent(customEvent);
+      this.dispatchEvent(formCustomEvent);
     } else {
       throw new Error("the event value is not a string");
     }
@@ -124,7 +126,9 @@ class AppFormCardExpirationDate extends HTMLElement {
           year: newYear,
         }
       });
+      const formCustomEvent = new CustomEvent("update-form", { bubbles: true });
       this.dispatchEvent(customEvent);
+      this.dispatchEvent(formCustomEvent);
     } else {
       throw new Error("the event value is not a string");
     }
@@ -158,6 +162,10 @@ class AppFormCardExpirationDate extends HTMLElement {
         this.appFormError.message = "Wrong format";
       }
     }
+  }
+
+  validateInputs() {
+
   }
 }
 

@@ -44,33 +44,13 @@ class AppFormCardNumber extends HTMLElement {
     this.inputElement.removeEventListener("keyup", this.handleInputKeyUp);
   }
 
-  computeCardNumber(cardNumberFromInput) {
-    if (typeof cardNumberFromInput === "string") {
-      const emptyCardNumber = Array.from(["0", "0", "0", "0"], () => ["0", "0", "0", "0"]);
-      const cardNumberAsArray = emptyCardNumber.map((group, groupIndex) => {
-        return group.map((char, charIndex) => {
-          const currentIndex = (groupIndex * 4) + charIndex;
-          return cardNumberFromInput[currentIndex] ? cardNumberFromInput[currentIndex].toUpperCase() : char;
-        });
-      });
-      return cardNumberAsArray.reduce((cardNumberAsString, group, groupIndex) => {
-        return `${cardNumberAsString}${groupIndex <= 0 ? "" : " "}${group.join("")}`;
-      }, "");
-    } else {
-      throw new Error("invalid parameter");
-    }
-  }
-
   handleInputKeyUp(event) {
-    const number = event.target.value;
-    if (typeof number === "string") {
+    const cardNumber = event.target.value;
+    if (typeof cardNumber === "string") {
       this.validateInput();
-      const newNumber = this.computeCardNumber(number);
       const customEvent = new CustomEvent("update-card-number", {
         bubbles: true,
-        detail: {
-          number: newNumber
-        }
+        detail: { cardNumber }
       });
       const formCustomEvent = new CustomEvent("update-form", { bubbles: true });
       this.dispatchEvent(customEvent);
@@ -89,6 +69,8 @@ class AppFormCardNumber extends HTMLElement {
         this.appFormError.message = "Can't be blank";
       } else if (this.inputElement.validity.tooShort) {
         this.appFormError.message = "Too short";
+      } else if (this.inputElement.validity.tooLong) {
+        this.appFormError.message = "Too long";
       } else if (this.inputElement.validity.patternMismatch) {
         this.appFormError.message = "Wrong format";
       }

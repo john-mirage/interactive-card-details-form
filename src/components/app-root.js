@@ -35,19 +35,6 @@ class AppRoot extends HTMLElement {
     this.removeEventListener("update-card-cvc", this.handleCardCvc);
   }
 
-  handleCardNumber(customEvent) {
-    if (customEvent instanceof CustomEvent) {
-      const { number } = customEvent.detail;
-      if (typeof number === "string") {
-         this.appCard.appCardFront.cardNumber = number;
-      } else {
-        throw new Error("The card number is not a string");
-      }
-    } else {
-      throw new Error("The parameter must be a custom event");
-    }
-  }
-
   handleCardHolder(customEvent) {
     if (customEvent instanceof CustomEvent) {
       const { holder } = customEvent.detail;
@@ -55,6 +42,19 @@ class AppRoot extends HTMLElement {
          this.appCard.appCardFront.cardHolder = holder;
       } else {
         throw new Error("The card holder is not a string");
+      }
+    } else {
+      throw new Error("The parameter must be a custom event");
+    }
+  }
+
+  handleCardNumber(customEvent) {
+    if (customEvent instanceof CustomEvent) {
+      const { cardNumber } = customEvent.detail;
+      if (typeof cardNumber === "string") {
+         this.appCard.appCardFront.cardNumber = cardNumber;
+      } else {
+        throw new Error("The card number is not a string");
       }
     } else {
       throw new Error("The parameter must be a custom event");
