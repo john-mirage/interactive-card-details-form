@@ -47,13 +47,10 @@ class AppFormCardExpirationDate extends HTMLElement {
     if (this.monthIsValid) {
       if (this.monthInputBorderElement.classList.contains("before:bg-input-error")) this.monthInputBorderElement.classList.remove("before:bg-input-error");
       if (!this.monthInputBorderElement.classList.contains("before:bg-light-grayish-violet")) this.monthInputBorderElement.classList.add("before:bg-light-grayish-violet");
-      if (this.appFormError.isConnected && this.yearIsValid) this.containerElement.removeChild(this.appFormError);
     } else {
       if (this.monthInputBorderElement.classList.contains("before:bg-light-grayish-violet")) this.monthInputBorderElement.classList.remove("before:bg-light-grayish-violet");
       if (!this.monthInputBorderElement.classList.contains("before:bg-input-error")) this.monthInputBorderElement.classList.add("before:bg-input-error");
-      if (!this.appFormError.isConnected) this.containerElement.append(this.appFormError);
     }
-    this.isValid = this.monthIsValid && this.yearIsValid;
   }
 
   set yearIsValid(yearIsValid) {
@@ -61,13 +58,10 @@ class AppFormCardExpirationDate extends HTMLElement {
     if (this.yearIsValid) {
       if (this.yearInputBorderElement.classList.contains("before:bg-input-error")) this.yearInputBorderElement.classList.remove("before:bg-input-error");
       if (!this.yearInputBorderElement.classList.contains("before:bg-light-grayish-violet")) this.yearInputBorderElement.classList.add("before:bg-light-grayish-violet");
-      if (this.appFormError.isConnected && this.monthIsValid) this.containerElement.removeChild(this.appFormError);
     } else {
       if (this.yearInputBorderElement.classList.contains("before:bg-light-grayish-violet")) this.yearInputBorderElement.classList.remove("before:bg-light-grayish-violet");
       if (!this.yearInputBorderElement.classList.contains("before:bg-input-error")) this.yearInputBorderElement.classList.add("before:bg-input-error");
-      if (!this.appFormError.isConnected) this.containerElement.append(this.appFormError);
     }
-    this.isValid = this.monthIsValid && this.yearIsValid;
   }
 
   connectedCallback() {
@@ -87,7 +81,7 @@ class AppFormCardExpirationDate extends HTMLElement {
   handleMonthInputKeyUp(event) {
     const cardExpirationDateMonth = event.target.value;
     if (typeof cardExpirationDateMonth === "string") {
-      this.validateMonthInput();
+      this.validateInputs();
       const customEvent = new CustomEvent("update-card-expiration-date-month", {
         bubbles: true,
         detail: { cardExpirationDateMonth }
@@ -103,7 +97,7 @@ class AppFormCardExpirationDate extends HTMLElement {
   handleYearInputKeyUp(event) {
     const cardExpirationDateYear = event.target.value;
     if (typeof cardExpirationDateYear === "string") {
-      this.validateYearInput();
+      this.validateInputs();
       const customEvent = new CustomEvent("update-card-expiration-date-year", {
         bubbles: true,
         detail: { cardExpirationDateYear }
@@ -116,38 +110,25 @@ class AppFormCardExpirationDate extends HTMLElement {
     }
   }
 
-  validateMonthInput() {
-    if (this.monthInputElement.validity.valid) {
-      this.monthIsValid = true;
-    } else {
-      this.monthIsValid = false;
-      if (this.monthInputElement.validity.valueMissing) {
-        this.appFormError.message = "Can't be blank";
-      } else if (this.monthInputElement.validity.tooShort) {
-        this.appFormError.message = "Too short";
-      } else if (this.monthInputElement.validity.patternMismatch) {
-        this.appFormError.message = "Wrong format";
-      }
-    }
-  }
-
-  validateYearInput() {
-    if (this.yearInputElement.validity.valid) {
-      this.yearIsValid = true;
-    } else {
-      this.yearIsValid = false;
-      if (this.yearInputElement.validity.valueMissing) {
-        this.appFormError.message = "Can't be blank";
-      } else if (this.yearInputElement.validity.tooShort) {
-        this.appFormError.message = "Too short";
-      } else if (this.yearInputElement.validity.patternMismatch) {
-        this.appFormError.message = "Wrong format";
-      }
-    }
-  }
-
   validateInputs() {
-
+    const monthInputIsValid = this.monthInputElement.validity.valid;
+    const yearInputIsValid = this.yearInputElement.validity.valid;
+    this.monthIsValid = monthInputIsValid;
+    this.yearIsValid = yearInputIsValid;
+    if (monthInputIsValid && yearInputIsValid) {
+      if (this.appFormError.isConnected) this.containerElement.removeChild(this.appFormError);
+      this.isValid = true;
+    } else {
+      if (!this.appFormError.isConnected) this.containerElement.append(this.appFormError);
+      this.isValid = false;
+      if (this.monthInputElement.validity.valueMissing || this.yearInputElement.validity.valueMissing) {
+        this.appFormError.message = "Can't be blank";
+      } else if (this.monthInputElement.validity.tooShort || this.yearInputElement.validity.tooShort) {
+        this.appFormError.message = "Too short";
+      } else if (this.monthInputElement.validity.patternMismatch || this.yearInputElement.validity.patternMismatch) {
+        this.appFormError.message = "Wrong format";
+      }
+    }
   }
 }
 
