@@ -4,7 +4,8 @@ class AppRoot extends HTMLElement {
   constructor() {
     super();
     this.initialCall = true;
-    this.mainElement = template.content.firstElementChild.cloneNode(true);
+    this.titleElement = template.content.firstElementChild.cloneNode(true);
+    this.mainElement = template.content.lastElementChild.cloneNode(true);
     this.appCard = this.mainElement.querySelector("app-card");
     this.appForm = this.mainElement.querySelector("app-form");
     this.handleCardNumber = this.handleCardNumber.bind(this);
@@ -17,7 +18,7 @@ class AppRoot extends HTMLElement {
   connectedCallback() {
     if (this.initialCall) {
       this.classList.add("block", "w-full");
-      this.append(this.mainElement);
+      this.append(this.titleElement, this.mainElement);
       this.initialCall = false;
     }
     this.addEventListener("update-card-number", this.handleCardNumber);
