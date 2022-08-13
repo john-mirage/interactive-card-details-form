@@ -80,7 +80,7 @@
       <app-form-card-number class="col-span-2"></app-form-card-number>
       <app-form-card-expiration-date class="col-span-2 xs:col-span-1"></app-form-card-expiration-date>
       <app-form-card-cvc class="col-span-2 xs:col-span-1"></app-form-card-cvc>
-      <button class="col-span-2 w-full h-56 rounded-lg bg-very-dark-violet/20 text-white text-lg" disabled data-name="button">Confirm</button>
+      <button type="button" class="col-span-2 w-full h-56 rounded-lg bg-very-dark-violet/20 text-white text-lg" disabled data-name="button">Confirm</button>
     </form>
   </template>
 
@@ -187,6 +187,25 @@
   <!-- template | app form error -->
   <template id="template-app-form-error">
     <p class="pt-4 text-xs font-500 text-input-error"></p>
+  </template>
+
+  <!-- template | app success -->
+  <template id="template-app-success">
+    <div class="text-center">
+      <svg class="mx-auto mb-40 w-80 h-80" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+        <circle cx="40" cy="40" r="40" fill="url(#a)"/>
+        <path d="M28 39.92 36.08 48l16-16" stroke="#fff" stroke-width="3"/>
+        <defs>
+          <linearGradient id="a" x1="-23.014" y1="11.507" x2="0" y2="91.507" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#6348FE"/>
+            <stop offset="1" stop-color="#610595"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <h2 class="mb-20 text-[28px] text-very-dark-violet font-500 uppercase tracking-[3.5px]">thank you!</h2>
+      <p class="mb-48 text-lg text-dark-grayish-violet font-500">We've added your card details</p>
+      <button class="w-full h-56 rounded-lg bg-very-dark-violet text-white text-lg">Continue</button>
+    </div>
   </template>
 
   <script type="module" src="/src/main.js"></script>

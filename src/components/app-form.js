@@ -1,16 +1,34 @@
-const template = document.getElementById("template-app-form");
+const formTemplate = document.getElementById("template-app-form");
+const successTemplate = document.getElementById("template-app-success");
+
+export const fadeInAndTranslateXAnimation = [
+  { opacity: 0, transform: "translateX(4rem)", offset: 0 },
+  { opacity: 1, transform: "translateX(0)", offset: 1 }
+];
+
+export const fadeOutAndTranslateXAnimation = [
+  { opacity: 1, transform: "translateX(0)", offset: 0 },
+  { opacity: 0, transform: "translateX(-4rem)", offset: 1 }
+];
+
+export const fadeAndTranslateXAnimationTiming = {
+  duration: 300,
+  easing: "ease-in-out",
+}
 
 class AppForm extends HTMLElement {
   constructor() {
     super();
     this.initialCall = true;
-    this.formElement = template.content.firstElementChild.cloneNode(true);
+    this.formElement = formTemplate.content.firstElementChild.cloneNode(true);
+    this.successElement = successTemplate.content.firstElementChild.cloneNode(true);
     this.appFormCardHolder = this.formElement.querySelector("app-form-card-holder");
     this.appFormCardNumber = this.formElement.querySelector("app-form-card-number");
     this.appFormCardExpirationDate = this.formElement.querySelector("app-form-card-expiration-date");
     this.appFormCardCvc = this.formElement.querySelector("app-form-card-cvc");
     this.buttonElement = this.formElement.querySelector('[data-name="button"]');
-    this.handleButton = this.handleButton.bind(this);
+    this.handleButtonState = this.handleButtonState.bind(this);
+    this.handleButtonClick = this.handleButtonClick.bind(this);
   }
 
   get isValid() {
@@ -39,14 +57,16 @@ class AppForm extends HTMLElement {
       this.append(this.formElement);
       this.initialCall = false;
     }
-    this.addEventListener("update-form", this.handleButton);
+    this.addEventListener("update-form", this.handleButtonState);
+    this.buttonElement.addEventListener("click", this.handleButtonClick);
   }
 
   disconnectedCallback() {
-    this.removeEventListener("update-form", this.handleButton);
+    this.removeEventListener("update-form", this.handleButtonState);
+    this.buttonElement.removeEventListener("click", this.handleButtonClick);
   }
 
-  handleButton() {
+  handleButtonState() {
     if (
       this.appFormCardHolder.isValid &&
       this.appFormCardNumber.isValid &&
@@ -57,6 +77,14 @@ class AppForm extends HTMLElement {
     } else {
       this.isValid = false;
     }
+  }
+
+  handleButtonClick() {
+    const fadeOut = this.formElement.animate(fadeOutAndTranslateXAnimation, fadeAndTranslateXAnimationTiming);
+    fadeOut.onfinish = () => {
+      this.replaceChildren(this.successElement);
+      this.successElement.animate(fadeInAndTranslateXAnimation, fadeAndTranslateXAnimationTiming);
+    };
   }
 }
 
