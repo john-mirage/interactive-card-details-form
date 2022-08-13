@@ -54,7 +54,7 @@ class AppFormCardHolder extends HTMLElement {
       const customEvent = new CustomEvent("update-card-holder", {
         bubbles: true,
         detail: {
-          holder: newHolder,
+          holder: newHolder === "" ? "Jane Appleseed" : newHolder,
         }
       });
       this.dispatchEvent(customEvent);
