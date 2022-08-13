@@ -27,22 +27,25 @@
   <meta property="twitter:title" content="Interactive card details form">
   <meta property="twitter:description" content="This fun project will be an excellent way to practice DOM manipulation and form validation while also putting your HTML and CSS skills to the test.">
   <meta property="twitter:image" content="https://john-mirage.github.io/interactive-card-details-form/preview.jpg">
-  <script type="module" crossorigin src="/interactive-card-details-form/assets/index.921cbb66.js"></script>
+  <script type="module" crossorigin src="/interactive-card-details-form/assets/index.43979a55.js"></script>
   <link rel="stylesheet" href="/interactive-card-details-form/assets/index.6b2102d8.css">
 </head>
 
 <body class="relative min-h-screen lg:flex lg:justify-center lg:items-center">
   <!-- background image -->
-  <picture class="absolute z-10 top-0 left-0 w-full xs:h-240 md:h-[364px] lg:w-[calc(50%-240px)] lg:h-full xl:w-[calc(50%-200px)]">
-    <source srcset="/interactive-card-details-form/assets/bg-main-desktop.8bf4510a.png " media="(min-width: 992px)">
-    <img class="w-full xs:h-full xs:object-cover" src="/interactive-card-details-form/assets/bg-main-mobile.9e839c55.png" alt="" />
-  </picture>
+  <aside class="absolute z-10 top-0 left-0 w-full xs:h-240 md:h-[364px] lg:w-[calc(50%-240px)] lg:h-full xl:w-[calc(50%-200px)]">
+    <picture class="w-full h-full">
+      <source srcset="/interactive-card-details-form/assets/bg-main-desktop.8bf4510a.png " media="(min-width: 992px)">
+      <img class="w-full xs:h-full xs:object-cover" src="/interactive-card-details-form/assets/bg-main-mobile.9e839c55.png" alt="" />
+    </picture>
+  </aside>
 
   <!-- app -->
   <div class="w-full" id="app"></div>
 
   <!-- template | app root -->
   <template id="template-app-root">
+    <h1 class="sr-only">Interactive card details form</h1>
     <main class="mx-auto container px-16 py-32 md:px-24 md:py-68 lg:flex lg:flex-row lg:items-center lg:px-32">
       <app-card class="mb-48 relative z-50 flex flex-col lg:w-full lg:flex-1"></app-card>
       <app-form class="lg:ml-64 lg:flex-none lg:w-[380px] xl:ml-128"></app-form>
@@ -89,8 +92,8 @@
   <!-- template | app form card holder -->
   <template id="template-app-form-card-holder">
     <label>
-      <h2 class="mb-8 text-very-dark-violet text-xs font-500 tracking-[2px] uppercase">cardholder name</h2>
-      <div class="relative w-full h-48">
+      <span class="mb-8 block text-very-dark-violet text-xs font-500 tracking-[2px] uppercase">cardholder name</span>
+      <span class="block relative w-full h-48">
         <input
           class="absolute z-20 inset-0 px-20 bg-transparent border-none text-lg font-500 peer placeholder:text-dark-grayish-violet focus-visible:ring-0"
           type="text"
@@ -100,16 +103,16 @@
           required
           pattern="^[a-zA-Z]+ [a-zA-Z]+$"
         >
-        <div class="absolute z-auto inset-0 border border-transparent bg-white bg-clip-padding rounded-lg before:absolute before:inset-0 before:-z-10 before:-m-1 before:rounded-lg before:bg-light-grayish-violet peer-focus-visible:before:bg-gradient-to-tr peer-focus-visible:before:from-input-active-left peer-focus-visible:before:to-input-active-right" data-name="input-border"></div>
-      </div>
+        <span class="block absolute z-auto inset-0 border border-transparent bg-white bg-clip-padding rounded-lg before:absolute before:inset-0 before:-z-10 before:-m-1 before:rounded-lg before:bg-light-grayish-violet peer-focus-visible:before:bg-gradient-to-tr peer-focus-visible:before:from-input-active-left peer-focus-visible:before:to-input-active-right" data-name="input-border"></span>
+      </span>
     </label>
   </template>
 
   <!-- template | app form card number -->
   <template id="template-app-form-card-number">
     <label>
-      <h2 class="mb-8 text-very-dark-violet text-xs font-500 tracking-[2px] uppercase">card number</h2>
-      <div class="relative w-full h-48">
+      <span class="mb-8 block text-very-dark-violet text-xs font-500 tracking-[2px] uppercase">card number</span>
+      <span class="block relative w-full h-48">
         <input
           class="absolute z-20 inset-0 px-20 bg-transparent border-none text-lg font-500 peer placeholder:text-dark-grayish-violet focus-visible:ring-0"
           type="text"
@@ -121,18 +124,18 @@
           maxlength="16"
           pattern="^[0-9]{16}$"
         >
-        <div class="absolute z-auto inset-0 border border-transparent bg-white bg-clip-padding rounded-lg before:absolute before:inset-0 before:-z-10 before:-m-1 before:rounded-lg before:bg-light-grayish-violet peer-focus-visible:before:bg-gradient-to-tr peer-focus-visible:before:from-input-active-left peer-focus-visible:before:to-input-active-right" data-name="input-border"></div>
-      </div>
+        <span class="block absolute z-auto inset-0 border border-transparent bg-white bg-clip-padding rounded-lg before:absolute before:inset-0 before:-z-10 before:-m-1 before:rounded-lg before:bg-light-grayish-violet peer-focus-visible:before:bg-gradient-to-tr peer-focus-visible:before:from-input-active-left peer-focus-visible:before:to-input-active-right" data-name="input-border"></span>
+        </span>
     </label>
   </template>
 
   <!-- template | app form card expiration date -->
   <template id="template-app-form-card-expiration-date">
     <div>
-      <h2 class="mb-8 text-very-dark-violet text-xs font-500 tracking-[2px] uppercase">exp. date (mm/yy)</h2>
+      <div class="mb-8 text-very-dark-violet text-xs font-500 tracking-[2px] uppercase">exp. date (mm/yy)</div>
       <div class="flex flex-row items-center">
         <label class="mr-8 flex-1 relative w-full h-48">
-          <h3 class="sr-only">expiration date month</h3>
+          <span class="sr-only">expiration date month</span>
           <input
             class="absolute z-20 inset-0 px-20 bg-transparent border-none text-lg font-500 peer placeholder:text-dark-grayish-violet focus-visible:ring-0 placeholder:uppercase"
             type="text"
@@ -144,10 +147,10 @@
             maxlength="2"
             pattern="^0[0-9]$|^1[0-2]$"
           >
-          <div class="absolute z-auto inset-0 border border-transparent bg-white bg-clip-padding rounded-lg before:absolute before:inset-0 before:-z-10 before:-m-1 before:rounded-lg before:bg-light-grayish-violet peer-focus-visible:before:bg-gradient-to-tr peer-focus-visible:before:from-input-active-left peer-focus-visible:before:to-input-active-right" data-name="month-input-border"></div>
+          <span class="block absolute z-auto inset-0 border border-transparent bg-white bg-clip-padding rounded-lg before:absolute before:inset-0 before:-z-10 before:-m-1 before:rounded-lg before:bg-light-grayish-violet peer-focus-visible:before:bg-gradient-to-tr peer-focus-visible:before:from-input-active-left peer-focus-visible:before:to-input-active-right" data-name="month-input-border"></span>
         </label>
         <label class="ml-8 flex-1 relative w-full h-48">
-          <h3 class="sr-only">expiration date year</h3>
+          <span class="sr-only">expiration date year</span>
           <input
             class="absolute z-20 inset-0 px-20 bg-transparent border-none text-lg font-500 peer placeholder:text-dark-grayish-violet focus-visible:ring-0 placeholder:uppercase"
             type="text"
@@ -159,7 +162,7 @@
             maxlength="2"
             pattern="^[2-9][2-9]$"
           >
-          <div class="absolute z-auto inset-0 border border-transparent bg-white bg-clip-padding rounded-lg before:absolute before:inset-0 before:-z-10 before:-m-1 before:rounded-lg before:bg-light-grayish-violet peer-focus-visible:before:bg-gradient-to-tr peer-focus-visible:before:from-input-active-left peer-focus-visible:before:to-input-active-right" data-name="year-input-border"></div>
+          <span class="block absolute z-auto inset-0 border border-transparent bg-white bg-clip-padding rounded-lg before:absolute before:inset-0 before:-z-10 before:-m-1 before:rounded-lg before:bg-light-grayish-violet peer-focus-visible:before:bg-gradient-to-tr peer-focus-visible:before:from-input-active-left peer-focus-visible:before:to-input-active-right" data-name="year-input-border"></span>
         </label>
       </div>
     </div>
@@ -168,8 +171,8 @@
   <!-- template | app form card cvc -->
   <template id="template-app-form-card-cvc">
     <label>
-      <h2 class="mb-8 text-very-dark-violet text-xs font-500 tracking-[2px] uppercase">cvc</h2>
-      <div class="relative w-full h-48">
+      <span class="mb-8 block text-very-dark-violet text-xs font-500 tracking-[2px] uppercase">cvc</span>
+      <span class="block relative w-full h-48">
         <input
           class="absolute z-20 inset-0 px-20 bg-transparent border-none text-lg font-500 peer placeholder:text-dark-grayish-violet focus-visible:ring-0"
           type="text"
@@ -181,8 +184,8 @@
           maxlength="3"
           pattern="^[0-9]{3}$"
         >
-        <div class="absolute z-auto inset-0 border border-transparent bg-white bg-clip-padding rounded-lg before:absolute before:inset-0 before:-z-10 before:-m-1 before:rounded-lg before:bg-light-grayish-violet peer-focus-visible:before:bg-gradient-to-tr peer-focus-visible:before:from-input-active-left peer-focus-visible:before:to-input-active-right" data-name="input-border"></div>
-      </div>
+        <span class="block absolute z-auto inset-0 border border-transparent bg-white bg-clip-padding rounded-lg before:absolute before:inset-0 before:-z-10 before:-m-1 before:rounded-lg before:bg-light-grayish-violet peer-focus-visible:before:bg-gradient-to-tr peer-focus-visible:before:from-input-active-left peer-focus-visible:before:to-input-active-right" data-name="input-border"></span>
+      </span>
     </label>
   </template>
 
