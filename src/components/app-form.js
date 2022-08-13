@@ -50,6 +50,7 @@ class AppForm extends HTMLElement {
     if (
       this.appFormCardHolder.isValid &&
       this.appFormCardNumber.isValid &&
+      this.appFormCardExpirationDate.isValid &&
       this.appFormCardCvc.isValid
     ) {
       this.isValid = true;
