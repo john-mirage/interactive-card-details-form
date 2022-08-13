@@ -12,14 +12,7 @@ class AppFormCardExpirationDate extends HTMLElement {
     this.handleMonthInputKeyUp = this.handleMonthInputKeyUp.bind(this);
     this.handleYearInputKeyUp = this.handleYearInputKeyUp.bind(this);
     this.appFormError = document.createElement("app-form-error");
-  }
-
-  get isValid() {
-    if (this.hasOwnProperty("_isValid")) {
-      return this._isValid;
-    } else {
-      return false;
-    }
+    this.isValid = false;
   }
 
   get monthIsValid() {
@@ -36,10 +29,6 @@ class AppFormCardExpirationDate extends HTMLElement {
     } else {
       return false;
     }
-  }
-
-  set isValid(isValid) {
-    this._isValid = isValid;
   }
 
   set monthIsValid(monthIsValid) {
