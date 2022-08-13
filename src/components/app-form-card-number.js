@@ -8,7 +8,6 @@ class AppFormCardNumber extends HTMLElement {
     this.inputElement = this.labelElement.querySelector('[data-name="input"]');
     this.inputBorderElement = this.labelElement.querySelector('[data-name="input-border"]');
     this.handleInputKeyUp = this.handleInputKeyUp.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
     this.appFormError = document.createElement("app-form-error");
   }
 
@@ -16,21 +15,20 @@ class AppFormCardNumber extends HTMLElement {
     if (this.hasOwnProperty("_isValid")) {
       return this._isValid;
     } else {
-      return true;
+      return false;
     }
   }
 
   set isValid(isValid) {
-    const hasChanged = this.isValid !== isValid;
-    if (hasChanged) {
-      this._isValid = isValid;
-      if (this.isValid) {
-        this.inputBorderElement.classList.replace("before:bg-input-error", "before:bg-light-grayish-violet");
-        this.labelElement.removeChild(this.appFormError);
-      } else {
-        this.inputBorderElement.classList.replace("before:bg-light-grayish-violet", "before:bg-input-error");
-        this.labelElement.append(this.appFormError);
-      }
+    this._isValid = isValid;
+    if (this.isValid) {
+      if (this.inputBorderElement.classList.contains("before:bg-input-error")) this.inputBorderElement.classList.remove("before:bg-input-error");
+      if (!this.inputBorderElement.classList.contains("before:bg-light-grayish-violet")) this.inputBorderElement.classList.add("before:bg-light-grayish-violet");
+      if (this.appFormError.isConnected) this.labelElement.removeChild(this.appFormError);
+    } else {
+      if (this.inputBorderElement.classList.contains("before:bg-light-grayish-violet")) this.inputBorderElement.classList.remove("before:bg-light-grayish-violet");
+      if (!this.inputBorderElement.classList.contains("before:bg-input-error")) this.inputBorderElement.classList.add("before:bg-input-error");
+      if (!this.appFormError.isConnected) this.labelElement.append(this.appFormError);
     }
   }
 
@@ -40,12 +38,10 @@ class AppFormCardNumber extends HTMLElement {
       this.initialCall = false;
     }
     this.inputElement.addEventListener("keyup", this.handleInputKeyUp);
-    this.inputElement.addEventListener("change", this.handleInputChange);
   }
 
   disconnectedCallback() {
     this.inputElement.removeEventListener("keyup", this.handleInputKeyUp);
-    this.inputElement.removeEventListener("change", this.handleInputChange);
   }
 
   computeCardNumber(cardNumberFromInput) {
@@ -68,6 +64,18 @@ class AppFormCardNumber extends HTMLElement {
   handleInputKeyUp(event) {
     const number = event.target.value;
     if (typeof number === "string") {
+      if (this.inputElement.validity.valid) {
+        this.isValid = true;
+      } else {
+        this.isValid = false;
+        if (this.inputElement.validity.valueMissing) {
+          this.appFormError.message = "Can't be blank";
+        } else if (this.inputElement.validity.tooShort) {
+          this.appFormError.message = "Too short";
+        } else if (this.inputElement.validity.patternMismatch) {
+          this.appFormError.message = "Wrong format";
+        }
+      }
       const newNumber = this.computeCardNumber(number);
       const customEvent = new CustomEvent("update-card-number", {
         bubbles: true,
@@ -75,25 +83,11 @@ class AppFormCardNumber extends HTMLElement {
           number: newNumber
         }
       });
+      const formCustomEvent = new CustomEvent("update-form", { bubbles: true });
       this.dispatchEvent(customEvent);
+      this.dispatchEvent(formCustomEvent);
     } else {
       throw new Error("the event value is not a string");
-    }
-  }
-
-  handleInputChange() {
-    if (this.inputElement.validity.valid) {
-      this.isValid = true;
-    } else {
-      this.isValid = false;
-      if (this.inputElement.validity.valueMissing) {
-        this.appFormError.message = "Can't be blank";
-      } else if (this.inputElement.validity.tooShort) {
-        this.appFormError.message = "Too short";
-      } else if (this.inputElement.validity.patternMismatch) {
-        this.appFormError.message = "Wrong format";
-      }
-      console.log(this.inputElement.validity);
     }
   }
 }
