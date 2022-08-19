@@ -1,0 +1,13 @@
+@media screen and (min-width: 992px) {
+  .form {
+    margin-left: 4rem;
+    flex: none;
+    width: 23.75rem;
+  }
+}
+
+@media screen and (min-width: 1112px) {
+  .form {
+    margin-left: 8rem;
+  }
+}
