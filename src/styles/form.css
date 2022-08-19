@@ -94,7 +94,11 @@
 }
 
 .form__input:focus-visible ~ .form__input-border::before {
-  background: linear-gradient(to top right, hsl(249, 99%, 64%), hsl(278, 94%, 30%));
+  background: linear-gradient(to top right, var(--color-input-active-left), var(--color-input-active-right));
+}
+
+.form__input--error ~ .form__input-border::before {
+  background: var(--color-input-error);
 }
 
 .form__input-border::before {

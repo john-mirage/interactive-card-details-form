@@ -22,12 +22,10 @@ class AppFormCardCvc extends HTMLLabelElement {
   set isValid(isValid) {
     this._isValid = isValid;
     if (this.isValid) {
-      if (this.inputBorderElement.classList.contains("before:bg-input-error")) this.inputBorderElement.classList.remove("before:bg-input-error");
-      if (!this.inputBorderElement.classList.contains("before:bg-light-grayish-violet")) this.inputBorderElement.classList.add("before:bg-light-grayish-violet");
+      if (this.inputElement.classList.contains("form__input--error")) this.inputElement.classList.remove("form__input--error");
       if (this.appFormError.isConnected) this.removeChild(this.appFormError);
     } else {
-      if (this.inputBorderElement.classList.contains("before:bg-light-grayish-violet")) this.inputBorderElement.classList.remove("before:bg-light-grayish-violet");
-      if (!this.inputBorderElement.classList.contains("before:bg-input-error")) this.inputBorderElement.classList.add("before:bg-input-error");
+      if (!this.inputElement.classList.contains("form__input--error")) this.inputElement.classList.add("form__input--error");
       if (!this.appFormError.isConnected) this.append(this.appFormError);
     }
   }

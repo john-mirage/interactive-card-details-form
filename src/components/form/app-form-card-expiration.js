@@ -37,23 +37,19 @@ class AppFormCardExpiration extends HTMLDivElement {
 
   set monthIsValid(monthIsValid) {
     this._monthIsValid = monthIsValid;
-    if (this.monthIsValid) {
-      if (this.monthInputBorderElement.classList.contains("before:bg-input-error")) this.monthInputBorderElement.classList.remove("before:bg-input-error");
-      if (!this.monthInputBorderElement.classList.contains("before:bg-light-grayish-violet")) this.monthInputBorderElement.classList.add("before:bg-light-grayish-violet");
-    } else {
-      if (this.monthInputBorderElement.classList.contains("before:bg-light-grayish-violet")) this.monthInputBorderElement.classList.remove("before:bg-light-grayish-violet");
-      if (!this.monthInputBorderElement.classList.contains("before:bg-input-error")) this.monthInputBorderElement.classList.add("before:bg-input-error");
+    if (this.monthIsValid && this.monthInputElement.classList.contains("form__input--error")) {
+      this.monthInputElement.classList.remove("form__input--error");
+    } else if (!this.monthInputElement.classList.contains("form__input--error")) {
+      this.monthInputElement.classList.add("form__input--error");
     }
   }
 
   set yearIsValid(yearIsValid) {
     this._yearIsValid = yearIsValid;
-    if (this.yearIsValid) {
-      if (this.yearInputBorderElement.classList.contains("before:bg-input-error")) this.yearInputBorderElement.classList.remove("before:bg-input-error");
-      if (!this.yearInputBorderElement.classList.contains("before:bg-light-grayish-violet")) this.yearInputBorderElement.classList.add("before:bg-light-grayish-violet");
-    } else {
-      if (this.yearInputBorderElement.classList.contains("before:bg-light-grayish-violet")) this.yearInputBorderElement.classList.remove("before:bg-light-grayish-violet");
-      if (!this.yearInputBorderElement.classList.contains("before:bg-input-error")) this.yearInputBorderElement.classList.add("before:bg-input-error");
+    if (this.yearIsValid && this.yearInputElement.classList.contains("form__input--error")) {
+      this.yearInputElement.classList.remove("form__input--error");
+    } else if (!this.yearInputElement.classList.contains("form__input--error")) {
+      this.yearInputElement.classList.add("form__input--error");
     }
   }
 
