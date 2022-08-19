@@ -37,8 +37,8 @@ class AppFormCardExpiration extends HTMLDivElement {
 
   set monthIsValid(monthIsValid) {
     this._monthIsValid = monthIsValid;
-    if (this.monthIsValid && this.monthInputElement.classList.contains("form__input--error")) {
-      this.monthInputElement.classList.remove("form__input--error");
+    if (this.monthIsValid) {
+      if (this.monthInputElement.classList.contains("form__input--error")) this.monthInputElement.classList.remove("form__input--error");
     } else if (!this.monthInputElement.classList.contains("form__input--error")) {
       this.monthInputElement.classList.add("form__input--error");
     }
@@ -46,8 +46,8 @@ class AppFormCardExpiration extends HTMLDivElement {
 
   set yearIsValid(yearIsValid) {
     this._yearIsValid = yearIsValid;
-    if (this.yearIsValid && this.yearInputElement.classList.contains("form__input--error")) {
-      this.yearInputElement.classList.remove("form__input--error");
+    if (this.yearIsValid) {
+      if (this.yearInputElement.classList.contains("form__input--error")) this.yearInputElement.classList.remove("form__input--error");
     } else if (!this.yearInputElement.classList.contains("form__input--error")) {
       this.yearInputElement.classList.add("form__input--error");
     }
@@ -67,22 +67,22 @@ class AppFormCardExpiration extends HTMLDivElement {
       this.yearInputElement.classList.add("form__input", "form__input--uppercase");
       this.yearInputBorderElement.classList.add("form__input-border");
       this.monthInputElement.setAttribute("type", "text");
-      this.monthInputElement.setAttribute("name", "cardExpirationDateMonth");
+      this.monthInputElement.setAttribute("name", "cardExpirationMonth");
       this.monthInputElement.setAttribute("placeholder", "mm");
       this.monthInputElement.setAttribute("required", "");
       this.monthInputElement.setAttribute("minlength", "2");
       this.monthInputElement.setAttribute("maxlength", "2");
       this.monthInputElement.setAttribute("pattern", "^0[0-9]$|^1[0-2]$");
       this.yearInputElement.setAttribute("type", "text");
-      this.yearInputElement.setAttribute("name", "cardExpirationDateYear");
+      this.yearInputElement.setAttribute("name", "cardExpirationYear");
       this.yearInputElement.setAttribute("placeholder", "yy");
       this.yearInputElement.setAttribute("required", "");
       this.yearInputElement.setAttribute("minlength", "2");
       this.yearInputElement.setAttribute("maxlength", "2");
       this.yearInputElement.setAttribute("pattern", "^[2-9][2-9]$");
       this.titleElement.textContent = "exp. date (mm/yy)";
-      this.monthTitleElement.textContent = "expiration date month";
-      this.yearTitleElement.textContent = "expiration date year";
+      this.monthTitleElement.textContent = "expiration month";
+      this.yearTitleElement.textContent = "expiration year";
       this.monthLabelElement.append(this.monthTitleElement, this.monthInputElement, this.monthInputBorderElement);
       this.yearLabelElement.append(this.yearTitleElement, this.yearInputElement, this.yearInputBorderElement);
       this.rowElement.append(this.monthLabelElement, this.yearLabelElement);
@@ -135,6 +135,7 @@ class AppFormCardExpiration extends HTMLDivElement {
     const yearInputIsValid = this.yearInputElement.validity.valid;
     this.monthIsValid = monthInputIsValid;
     this.yearIsValid = yearInputIsValid;
+    console.log(this.monthIsValid, this.yearIsValid);
     if (monthInputIsValid && yearInputIsValid) {
       if (this.appFormError.isConnected) this.removeChild(this.appFormError);
       this.isValid = true;
