@@ -36,5 +36,10 @@
   font-size: 1.125rem;
   line-height: 1.75rem;
   cursor: pointer;
+  transition: opacity 150ms;
+}
+
+.success-view__button:hover {
+  opacity: 0.8;
 }
 
