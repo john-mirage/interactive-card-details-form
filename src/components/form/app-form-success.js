@@ -1,3 +1,5 @@
+import iconImage from "@images/icon-complete.svg";
+
 class AppFormSuccess extends HTMLDivElement {
   #initialCall = true;
   imageElement = document.createElement("img");
@@ -16,7 +18,7 @@ class AppFormSuccess extends HTMLDivElement {
       this.titleElement.classList.add("success-view__title");
       this.descriptionElement.classList.add("success-view__description");
       this.buttonElement.classList.add("success-view__button");
-      this.imageElement.setAttribute("src", "/src/images/icon-complete.svg");
+      this.imageElement.setAttribute("src", iconImage);
       this.imageElement.setAttribute("alt", "Icon complete");
       this.buttonElement.setAttribute("type", "button");
       this.titleElement.textContent = "thank you!";
