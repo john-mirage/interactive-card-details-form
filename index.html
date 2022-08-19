@@ -28,7 +28,7 @@
   <meta property="twitter:description" content="This fun project will be an excellent way to practice DOM manipulation and form validation while also putting your HTML and CSS skills to the test.">
   <meta property="twitter:image" content="https://john-mirage.github.io/interactive-card-details-form/preview.jpg">
   <script type="module" crossorigin src="/interactive-card-details-form/assets/index.e5b33009.js"></script>
-  <link rel="stylesheet" href="/interactive-card-details-form/assets/index.9460999f.css">
+  <link rel="stylesheet" href="/interactive-card-details-form/assets/index.c4b3459a.css">
 </head>
 
 <body class="page">
@@ -48,7 +48,7 @@
     <main class="page__container">
       <h1 class="page__title">Interactive card details form</h1>
       <app-card class="card"></app-card>
-      <app-form class="form"></app-form>
+      <app-form></app-form>
     </main>
   </template>
 
@@ -80,22 +80,22 @@
 
   <!-- template | app form -->
   <template id="template-app-form">
-    <form class="grid grid-cols-2 gap-16 lg:gap-y-32">
-      <app-form-card-holder class="col-span-2"></app-form-card-holder>
-      <app-form-card-number class="col-span-2"></app-form-card-number>
-      <app-form-card-expiration-date class="col-span-2 xs:col-span-1"></app-form-card-expiration-date>
-      <app-form-card-cvc class="col-span-2 xs:col-span-1"></app-form-card-cvc>
-      <button type="button" class="col-span-2 w-full h-56 rounded-lg bg-very-dark-violet/20 text-white text-lg" disabled data-name="button">Confirm</button>
+    <form class="form">
+      <app-form-card-holder></app-form-card-holder>
+      <app-form-card-number></app-form-card-number>
+      <app-form-card-expiration-date></app-form-card-expiration-date>
+      <app-form-card-cvc></app-form-card-cvc>
+      <button type="button" class="form__button" disabled data-name="button">Confirm</button>
     </form>
   </template>
 
   <!-- template | app form card holder -->
   <template id="template-app-form-card-holder">
-    <label>
-      <span class="mb-8 block text-very-dark-violet text-xs font-500 tracking-[2px] uppercase">cardholder name</span>
-      <span class="block relative w-full h-48">
+    <label class="form__section">
+      <span class="form__title">cardholder name</span>
+      <span class="form__input-container">
         <input
-          class="absolute z-20 inset-0 px-20 bg-transparent border-none text-lg font-500 peer placeholder:text-dark-grayish-violet focus-visible:ring-0"
+          class="form__input"
           type="text"
           name="cardHolder"
           placeholder="e.g. Jane Appleseed"
@@ -103,18 +103,18 @@
           required
           pattern="^(?:[a-zA-Z]+ ){1,2}[a-zA-Z]+$"
         >
-        <span class="block absolute z-auto inset-0 border border-transparent bg-white bg-clip-padding rounded-lg before:absolute before:inset-0 before:-z-10 before:-m-1 before:rounded-lg before:bg-light-grayish-violet peer-focus-visible:before:bg-gradient-to-tr peer-focus-visible:before:from-input-active-left peer-focus-visible:before:to-input-active-right" data-name="input-border"></span>
+        <span class="form__input-border" data-name="input-border"></span>
       </span>
     </label>
   </template>
 
   <!-- template | app form card number -->
   <template id="template-app-form-card-number">
-    <label>
-      <span class="mb-8 block text-very-dark-violet text-xs font-500 tracking-[2px] uppercase">card number</span>
-      <span class="block relative w-full h-48">
+    <label class="form__section">
+      <span class="form__title">card number</span>
+      <span class="form__input-container">
         <input
-          class="absolute z-20 inset-0 px-20 bg-transparent border-none text-lg font-500 peer placeholder:text-dark-grayish-violet focus-visible:ring-0"
+          class="form__input"
           type="text"
           name="cardNumber"
           placeholder="e.g. 1234 5678 9123 0000"
@@ -124,20 +124,20 @@
           maxlength="19"
           pattern="^(?:[0-9]{4} ){3}[0-9]{4}$"
         >
-        <span class="block absolute z-auto inset-0 border border-transparent bg-white bg-clip-padding rounded-lg before:absolute before:inset-0 before:-z-10 before:-m-1 before:rounded-lg before:bg-light-grayish-violet peer-focus-visible:before:bg-gradient-to-tr peer-focus-visible:before:from-input-active-left peer-focus-visible:before:to-input-active-right" data-name="input-border"></span>
+        <span class="form__input-border" data-name="input-border"></span>
         </span>
     </label>
   </template>
 
   <!-- template | app form card expiration date -->
   <template id="template-app-form-card-expiration-date">
-    <div>
-      <div class="mb-8 text-very-dark-violet text-xs font-500 tracking-[2px] uppercase">exp. date (mm/yy)</div>
-      <div class="flex flex-row items-center">
-        <label class="mr-8 flex-1 relative w-full h-48">
-          <span class="sr-only">expiration date month</span>
+    <div class="form__section form__section--row">
+      <div class="form__title">exp. date (mm/yy)</div>
+      <div class="form__row">
+        <label class="form__input-container">
+          <span class="form__hidden-title">expiration date month</span>
           <input
-            class="absolute z-20 inset-0 px-20 bg-transparent border-none text-lg font-500 peer placeholder:text-dark-grayish-violet focus-visible:ring-0 placeholder:uppercase"
+            class="form__input form__input--uppercase"
             type="text"
             name="cardExpirationDateMonth"
             placeholder="mm"
@@ -147,12 +147,12 @@
             maxlength="2"
             pattern="^0[0-9]$|^1[0-2]$"
           >
-          <span class="block absolute z-auto inset-0 border border-transparent bg-white bg-clip-padding rounded-lg before:absolute before:inset-0 before:-z-10 before:-m-1 before:rounded-lg before:bg-light-grayish-violet peer-focus-visible:before:bg-gradient-to-tr peer-focus-visible:before:from-input-active-left peer-focus-visible:before:to-input-active-right" data-name="month-input-border"></span>
+          <span class="form__input-border" data-name="month-input-border"></span>
         </label>
-        <label class="ml-8 flex-1 relative w-full h-48">
-          <span class="sr-only">expiration date year</span>
+        <label class="form__input-container">
+          <span class="form__hidden-title">expiration date year</span>
           <input
-            class="absolute z-20 inset-0 px-20 bg-transparent border-none text-lg font-500 peer placeholder:text-dark-grayish-violet focus-visible:ring-0 placeholder:uppercase"
+            class="form__input form__input--uppercase"
             type="text"
             name="cardExpirationDateYear"
             placeholder="yy"
@@ -162,7 +162,7 @@
             maxlength="2"
             pattern="^[2-9][2-9]$"
           >
-          <span class="block absolute z-auto inset-0 border border-transparent bg-white bg-clip-padding rounded-lg before:absolute before:inset-0 before:-z-10 before:-m-1 before:rounded-lg before:bg-light-grayish-violet peer-focus-visible:before:bg-gradient-to-tr peer-focus-visible:before:from-input-active-left peer-focus-visible:before:to-input-active-right" data-name="year-input-border"></span>
+          <span class="form__input-border" data-name="year-input-border"></span>
         </label>
       </div>
     </div>
@@ -170,11 +170,11 @@
 
   <!-- template | app form card cvc -->
   <template id="template-app-form-card-cvc">
-    <label>
-      <span class="mb-8 block text-very-dark-violet text-xs font-500 tracking-[2px] uppercase">cvc</span>
-      <span class="block relative w-full h-48">
+    <label class="form__section form__section--row">
+      <span class="form__title">cvc</span>
+      <span class="form__input-container">
         <input
-          class="absolute z-20 inset-0 px-20 bg-transparent border-none text-lg font-500 peer placeholder:text-dark-grayish-violet focus-visible:ring-0"
+          class="form__input"
           type="text"
           name="cardCvc"
           placeholder="e.g. 123"
@@ -184,18 +184,18 @@
           maxlength="3"
           pattern="^[0-9]{3}$"
         >
-        <span class="block absolute z-auto inset-0 border border-transparent bg-white bg-clip-padding rounded-lg before:absolute before:inset-0 before:-z-10 before:-m-1 before:rounded-lg before:bg-light-grayish-violet peer-focus-visible:before:bg-gradient-to-tr peer-focus-visible:before:from-input-active-left peer-focus-visible:before:to-input-active-right" data-name="input-border"></span>
+        <span class="form__input-border" data-name="input-border"></span>
       </span>
     </label>
   </template>
 
   <!-- template | app form error -->
   <template id="template-app-form-error">
-    <p class="pt-4 text-xs font-500 text-input-error"></p>
+    <p class="form__error"></p>
   </template>
 
-  <!-- template | app success -->
-  <template id="template-app-success">
+  <!-- template | app form confirm -->
+  <template id="template-app-form-confirm">
     <div class="text-center">
       <svg class="mx-auto mb-40 w-80 h-80" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
         <circle cx="40" cy="40" r="40" fill="url(#a)"/>
