@@ -28,52 +28,52 @@
   <meta property="twitter:description" content="This fun project will be an excellent way to practice DOM manipulation and form validation while also putting your HTML and CSS skills to the test.">
   <meta property="twitter:image" content="https://john-mirage.github.io/interactive-card-details-form/preview.jpg">
   <script type="module" crossorigin src="/interactive-card-details-form/assets/index.e5b33009.js"></script>
-  <link rel="stylesheet" href="/interactive-card-details-form/assets/index.6b2102d8.css">
+  <link rel="stylesheet" href="/interactive-card-details-form/assets/index.9460999f.css">
 </head>
 
-<body class="relative min-h-screen lg:flex lg:justify-center lg:items-center">
-  <!-- background image -->
-  <aside class="absolute z-10 top-0 left-0 w-full xs:h-240 md:h-[364px] lg:w-[calc(50%-240px)] lg:h-full xl:w-[calc(50%-200px)]">
-    <picture class="w-full h-full">
+<body class="page">
+  <!-- background -->
+  <aside class="background" aria-hidden="true">
+    <picture class="background__picture">
       <source srcset="/interactive-card-details-form/assets/bg-main-desktop.8bf4510a.png " media="(min-width: 992px)">
-      <img class="w-full xs:h-full xs:object-cover" src="/interactive-card-details-form/assets/bg-main-mobile.9e839c55.png" alt="" />
+      <img class="background__image" src="/interactive-card-details-form/assets/bg-main-mobile.9e839c55.png" alt="background image" />
     </picture>
   </aside>
 
   <!-- app -->
-  <div class="w-full" id="app"></div>
+  <div class="page__app" id="app"></div>
 
   <!-- template | app root -->
   <template id="template-app-root">
-    <main class="mx-auto container px-16 py-32 md:px-24 md:py-68 lg:flex lg:flex-row lg:items-center lg:px-32">
-      <h1 class="sr-only">Interactive card details form</h1>
-      <app-card class="mb-48 relative z-50 flex flex-col lg:w-full lg:flex-1"></app-card>
-      <app-form class="lg:ml-64 lg:flex-none lg:w-[380px] xl:ml-128"></app-form>
+    <main class="page__container">
+      <h1 class="page__title">Interactive card details form</h1>
+      <app-card class="card"></app-card>
+      <app-form class="form"></app-form>
     </main>
   </template>
 
   <!-- template | app card -->
   <template id="template-app-card">
-    <app-card-back class=" block flex-none ml-auto relative lg:order-2 xl:w-[447px]"></app-card-back>
-    <app-card-front class="-mt-[20%] block flex-none mr-auto relative xs:-mt-68 md:-mt-[108px] lg:mt-0 lg:mb-48 lg:order-1 xl:w-[447px]"></app-card-front>
+    <app-card-back class="card__back"></app-card-back>
+    <app-card-front class="card__front"></app-card-front>
   </template>
 
   <!-- template | app card back -->
   <template id="template-app-card-back">
-    <img class="w-286 md:w-[447px]" src="/interactive-card-details-form/assets/bg-card-back.503939c0.png" alt="">
-    <svg class="absolute top-0 left-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 447 245">
-      <text class="fill-white font-500 text-[14px] tracking-[2px] uppercase" x="360" y="126" data-name="card-cvc"></text>
+    <img class="card__image" src="/interactive-card-details-form/assets/bg-card-back.503939c0.png" alt="bank card back illustration">
+    <svg class="card__overlay" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 447 245">
+      <text class="card__text card__text--body card__text--uppercase" x="360" y="126" data-name="card-cvc"></text>
     </svg>
   </template>
 
   <!-- template | app card front -->
   <template id="template-app-card-front">
-    <img class="w-286 md:w-[447px]" src="/interactive-card-details-form/assets/bg-card-front.5aca8db4.png" alt="">
-    <svg class="absolute top-0 left-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 447 245">
+    <img class="card__image" src="/interactive-card-details-form/assets/bg-card-front.5aca8db4.png" alt="bank card front illustration">
+    <svg class="card__overlay" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 447 245">
       <image x="20" y="20" href="/interactive-card-details-form/assets/card-logo.c6ba498c.svg" width="84" height="47"/>
-      <text class="fill-white font-500 text-[30px] tracking-[4px]" x="20" y="164" data-name="card-number"></text>
-      <text class="fill-white font-500 text-[14px] tracking-[2px] uppercase" x="20" y="214" data-name="card-holder"></text>
-      <text class="fill-white font-500 text-[14px] tracking-[2px]" x="380" y="214">
+      <text class="card__text card__text--heading" x="20" y="164" data-name="card-number"></text>
+      <text class="card__text card__text--body card__text--uppercase" x="20" y="214" data-name="card-holder"></text>
+      <text class="card__text card__text--body" x="380" y="214">
         <tspan data-name="card-expiration-date-month"></tspan>/<tspan data-name="card-expiration-date-year"></tspan></text>
       </svg>
   </template>
