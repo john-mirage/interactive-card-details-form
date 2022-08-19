@@ -1,3 +1,5 @@
+import backgroundImage from "@images/bg-card-front.png";
+
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 
 class AppCardFront extends HTMLDivElement {
@@ -108,7 +110,7 @@ class AppCardFront extends HTMLDivElement {
       this.numberElement.classList.add("card__text", "card__text--heading");
       this.holderElement.classList.add("card__text", "card__text--body", "card__text--uppercase");
       this.expirationElement.classList.add("card__text", "card__text--body");
-      this.imageElement.setAttribute("src", "/src/images/bg-card-front.png");
+      this.imageElement.setAttribute("src", backgroundImage);
       this.imageElement.setAttribute("alt", "bank card front illustration");
       this.svgElement.setAttribute("viewBox", "0 0 447 245");
       this.svgImageElement.setAttribute("x", "20");
