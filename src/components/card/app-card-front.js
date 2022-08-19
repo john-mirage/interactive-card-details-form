@@ -1,4 +1,5 @@
 import backgroundImage from "@images/bg-card-front.png";
+import cardLogoImage from "@images/card-logo.svg";
 
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 
@@ -115,7 +116,7 @@ class AppCardFront extends HTMLDivElement {
       this.svgElement.setAttribute("viewBox", "0 0 447 245");
       this.svgImageElement.setAttribute("x", "20");
       this.svgImageElement.setAttribute("y", "20");
-      this.svgImageElement.setAttribute("href", "/src/images/card-logo.svg");
+      this.svgImageElement.setAttribute("href", cardLogoImage);
       this.svgImageElement.setAttribute("width", "84");
       this.svgImageElement.setAttribute("height", "47");
       this.numberElement.setAttribute("x", "20");
