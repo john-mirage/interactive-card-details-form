@@ -4,7 +4,7 @@ class AppCardBack extends HTMLDivElement {
   #initialCall = true;
   imageElement = document.createElement("img");
   svgElement = document.createElementNS(SVG_NAMESPACE, "svg");
-  textElement = document.createElementNS(SVG_NAMESPACE, "text");
+  cvcElement = document.createElementNS(SVG_NAMESPACE, "text");
 
   constructor() {
     super();
@@ -26,7 +26,7 @@ class AppCardBack extends HTMLDivElement {
         return cleanedCardCvc[charIndex] ? cleanedCardCvc[charIndex].toUpperCase() : char;
       });
       this._cardCvc = cardCvcAsArray.join("");
-      this.textElement.textContent = this.cardCvc;
+      this.cvcElement.textContent = this.cardCvc;
     } else {
       throw new Error("invalid parameter");
     }
@@ -37,17 +37,17 @@ class AppCardBack extends HTMLDivElement {
       this.classList.add("card__back");
       this.imageElement.classList.add("card__image");
       this.svgElement.classList.add("card__overlay");
-      this.textContent.classList.add("card__text", "card__text--body", "card__text--uppercase");
+      this.cvcElement.classList.add("card__text", "card__text--body", "card__text--uppercase");
       this.imageElement.setAttribute("src", "/src/images/bg-card-back.png");
       this.imageElement.setAttribute("alt", "bank card back illustration");
       this.svgElement.setAttribute("viewbox", "0 0 447 245");
-      this.textElement.setAttribute("x", "360");
-      this.textElement.setAttribute("y", "126");
-      this.svgElement.append(this.textElement);
+      this.cvcElement.setAttribute("x", "360");
+      this.cvcElement.setAttribute("y", "126");
+      this.svgElement.append(this.cvcElement);
       this.append(this.imageElement, this.svgElement);
       this.#initialCall = false;
     }
-    this.cardCvcElement.textContent = this.cardCvc;
+    this.cvcElement.textContent = this.cardCvc;
   }
 }
 

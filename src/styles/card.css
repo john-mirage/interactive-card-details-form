@@ -14,7 +14,7 @@
 }
 
 .card__front {
-  margin-left: -20%;
+  margin-top: -20%;
   flex: none;
   margin-right: auto;
   position: relative;
@@ -39,13 +39,13 @@
 }
 
 .card__text--heading {
-  font-size: 1.875rem;
-  letter-spacing: 0.25rem;
+  font-size: 30px;
+  letter-spacing: 4px;
 }
 
 .card__text--body {
-  font-size: 0.875rem;
-  letter-spacing: 0.125rem;
+  font-size: 14px;
+  letter-spacing: 2px;
 }
 
 .card__text--uppercase {
@@ -54,13 +54,13 @@
 
 @media screen and (min-width: 375px) {
   .card__front {
-    margin-left: -4.25rem;
+    margin-top: -4.25rem;
   }
 }
 
 @media screen and (min-width: 768px) {
   .card__front {
-    margin-left: -6.75rem;
+    margin-top: -6.75rem;
   }
 
   .card__image {

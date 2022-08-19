@@ -14,6 +14,7 @@
   --color-light-grayish-violet: hsl(270, 3%, 87%);
   --color-dark-grayish-violet: hsl(279, 6%, 55%);
   --color-very-dark-violet: hsl(278, 68%, 11%);
+  --color-very-dark-violet-pale: hsl(278 68% 11% / 0.2);
   --font-family: 'Space Grotesk';
 }
 

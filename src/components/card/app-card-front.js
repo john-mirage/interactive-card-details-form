@@ -31,17 +31,17 @@ class AppCardFront extends HTMLDivElement {
     }
   }
 
-  get cardExpirationDateMonth() {
-    if (this.hasOwnProperty("_cardExpirationDateMonth")) {
-      return this._cardExpirationDateMonth;
+  get cardExpirationMonth() {
+    if (this.hasOwnProperty("_cardExpirationMonth")) {
+      return this._cardExpirationMonth;
     } else {
       return "00";
     }
   }
 
-  get cardExpirationDateYear() {
-    if (this.hasOwnProperty("_cardExpirationDateYear")) {
-      return this._cardExpirationDateYear;
+  get cardExpirationYear() {
+    if (this.hasOwnProperty("_cardExpirationYear")) {
+      return this._cardExpirationYear;
     } else {
       return "00";
     }
@@ -72,29 +72,29 @@ class AppCardFront extends HTMLDivElement {
     this.holderElement.textContent = this.cardHolder.length <= 0 ? "Jane Appleseed" : this.cardHolder;
   }
 
-  set cardExpirationDateMonth(cardExpirationDateMonth) {
-    if (typeof cardExpirationDateMonth === "string") {
-      const cleanedCardExpirationDateMonth = cardExpirationDateMonth.replaceAll(/[^0-9]+/g, "");
-      const emptyCardExpirationDatePeriod = ["0", "0"];
-      const cardExpirationDatePeriodAsArray = emptyCardExpirationDatePeriod.map((char, charIndex) => {
-        return cleanedCardExpirationDateMonth[charIndex] ? cleanedCardExpirationDateMonth[charIndex].toUpperCase() : char;
+  set cardExpirationMonth(cardExpirationMonth) {
+    if (typeof cardExpirationMonth === "string") {
+      const cleanedCardExpirationMonth = cardExpirationMonth.replaceAll(/[^0-9]+/g, "");
+      const emptyCardExpirationPeriod = ["0", "0"];
+      const cardExpirationPeriodAsArray = emptyCardExpirationPeriod.map((char, charIndex) => {
+        return cleanedCardExpirationMonth[charIndex] ? cleanedCardExpirationMonth[charIndex].toUpperCase() : char;
       });
-      this._cardExpirationDateMonth = cardExpirationDatePeriodAsArray.join("");
-      this.expirationMonthElement.textContent = this.cardExpirationDateMonth;
+      this._cardExpirationMonth = cardExpirationPeriodAsArray.join("");
+      this.expirationMonthElement.textContent = this.cardExpirationMonth;
     } else {
       throw new Error("invalid parameter");
     }
   }
 
-  set cardExpirationDateYear(cardExpirationDateYear) {
-    if (typeof cardExpirationDateYear === "string") {
-      const cleanedCardExpirationDateYear = cardExpirationDateYear.replaceAll(/[^0-9]+/g, "");
-      const emptyCardExpirationDatePeriod = ["0", "0"];
-      const cardExpirationDatePeriodAsArray = emptyCardExpirationDatePeriod.map((char, charIndex) => {
-        return cleanedCardExpirationDateYear[charIndex] ? cleanedCardExpirationDateYear[charIndex].toUpperCase() : char;
+  set cardExpirationYear(cardExpirationYear) {
+    if (typeof cardExpirationYear === "string") {
+      const cleanedCardExpirationYear = cardExpirationYear.replaceAll(/[^0-9]+/g, "");
+      const emptyCardExpirationPeriod = ["0", "0"];
+      const cardExpirationPeriodAsArray = emptyCardExpirationPeriod.map((char, charIndex) => {
+        return cleanedCardExpirationYear[charIndex] ? cleanedCardExpirationYear[charIndex].toUpperCase() : char;
       });
-      this._cardExpirationDateYear = cardExpirationDatePeriodAsArray.join("");
-      this.expirationYearElement.textContent = this.cardExpirationDateYear;
+      this._cardExpirationYear = cardExpirationPeriodAsArray.join("");
+      this.expirationYearElement.textContent = this.cardExpirationYear;
     } else {
       throw new Error("invalid parameter");
     }
@@ -110,7 +110,7 @@ class AppCardFront extends HTMLDivElement {
       this.expirationElement.classList.add("card__text", "card__text--body");
       this.imageElement.setAttribute("src", "/src/images/bg-card-front.png");
       this.imageElement.setAttribute("alt", "bank card front illustration");
-      this.svgElement.setAttribute("viewbox", "0 0 447 245");
+      this.svgElement.setAttribute("viewBox", "0 0 447 245");
       this.svgImageElement.setAttribute("x", "20");
       this.svgImageElement.setAttribute("y", "20");
       this.svgImageElement.setAttribute("href", "/src/images/card-logo.svg");
@@ -122,15 +122,15 @@ class AppCardFront extends HTMLDivElement {
       this.holderElement.setAttribute("y", "214");
       this.expirationElement.setAttribute("x", "380");
       this.expirationElement.setAttribute("y", "214");
-      this.expirationElement.append(this.expirationMonthElement, this.expirationYearElement);
+      this.expirationElement.append(this.expirationMonthElement, "/", this.expirationYearElement);
       this.svgElement.append(this.svgImageElement, this.numberElement, this.holderElement, this.expirationElement);
       this.append(this.imageElement, this.svgElement);
       this.#initialCall = false;
     }
-    this.cardNumberElement.textContent = this.cardNumber;
-    this.cardHolderElement.textContent = this.cardHolder;
-    this.cardExpirationDateMonthElement.textContent = this.cardExpirationDateMonth;
-    this.cardExpirationDateYearElement.textContent = this.cardExpirationDateYear;
+    this.numberElement.textContent = this.cardNumber;
+    this.holderElement.textContent = this.cardHolder;
+    this.expirationMonthElement.textContent = this.cardExpirationMonth;
+    this.expirationYearElement.textContent = this.cardExpirationYear;
   }
 }
 

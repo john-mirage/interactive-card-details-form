@@ -62,9 +62,9 @@ class AppRoot extends HTMLElement {
 
   handleCardExpirationDateMonth(customEvent) {
     if (customEvent instanceof CustomEvent) {
-      const { cardExpirationDateMonth } = customEvent.detail;
-      if (typeof cardExpirationDateMonth === "string") {
-         this.appCard.appCardFront.cardExpirationDateMonth = cardExpirationDateMonth;
+      const { cardExpirationMonth } = customEvent.detail;
+      if (typeof cardExpirationMonth === "string") {
+         this.appCard.appCardFront.cardExpirationMonth = cardExpirationMonth;
       } else {
         throw new Error("The card expiration date month is not a string");
       }
@@ -75,9 +75,9 @@ class AppRoot extends HTMLElement {
 
   handleCardExpirationDateYear(customEvent) {
     if (customEvent instanceof CustomEvent) {
-      const { cardExpirationDateYear } = customEvent.detail;
-      if (typeof cardExpirationDateYear === "string") {
-         this.appCard.appCardFront.cardExpirationDateYear = cardExpirationDateYear;
+      const { cardExpirationYear } = customEvent.detail;
+      if (typeof cardExpirationYear === "string") {
+         this.appCard.appCardFront.cardExpirationYear = cardExpirationYear;
       } else {
         throw new Error("The card expiration date year is not a string");
       }

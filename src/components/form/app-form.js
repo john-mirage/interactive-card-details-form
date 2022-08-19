@@ -17,9 +17,10 @@ class AppForm extends HTMLFormElement {
   #initialCall = true;
   appFormCardHolder = document.createElement("label", { is: "app-form-card-holder" });
   appFormCardNumber = document.createElement("label", { is: "app-form-card-number" });
-  appFormCardExpirationDate = document.createElement("div", { is: "app-form-card-expiration-date" });
+  appFormCardExpirationDate = document.createElement("div", { is: "app-form-card-expiration" });
   appFormCardCvc = document.createElement("label", { is: "app-form-card-cvc" });
   buttonElement = document.createElement("button");
+  formSuccessElement = document.createElement("div", { is: "app-form-success" });
 
   constructor() {
     super();
@@ -39,21 +40,22 @@ class AppForm extends HTMLFormElement {
     this._isValid = isValid;
     if (this.isValid) {
       if (this.buttonElement.hasAttribute("disabled")) this.buttonElement.removeAttribute("disabled");
-      if (this.buttonElement.classList.contains("bg-very-dark-violet/20")) this.buttonElement.classList.remove("bg-very-dark-violet/20");
-      if (!this.buttonElement.classList.contains("bg-very-dark-violet")) this.buttonElement.classList.add("bg-very-dark-violet");
+      if (this.buttonElement.classList.contains("form__button--disabled")) this.buttonElement.classList.remove("form__button--disabled");
+      if (!this.buttonElement.classList.contains("form__button--enabled")) this.buttonElement.classList.add("form__button--enabled");
     } else {
       if (!this.buttonElement.hasAttribute("disabled")) this.buttonElement.setAttribute("disabled", "");
-      if (this.buttonElement.classList.contains("bg-very-dark-violet")) this.buttonElement.classList.remove("bg-very-dark-violet");
-      if (!this.buttonElement.classList.contains("bg-very-dark-violet/20")) this.buttonElement.classList.add("bg-very-dark-violet/20");
+      if (this.buttonElement.classList.contains("form__button--enabled")) this.buttonElement.classList.remove("form__button--enabled");
+      if (!this.buttonElement.classList.contains("form__button--disabled")) this.buttonElement.classList.add("form__button--disabled");
     }
   }
 
   connectedCallback() {
     if (this.#initialCall) {
       this.classList.add("form");
-      this.buttonElement.classList.add("form__button");
+      this.buttonElement.classList.add("form__button", "form__button--disabled");
       this.buttonElement.setAttribute("type", "button");
       this.buttonElement.setAttribute("disabled", "");
+      this.buttonElement.textContent = "Confirm";
       this.append(
         this.appFormCardHolder,
         this.appFormCardNumber,
@@ -86,10 +88,10 @@ class AppForm extends HTMLFormElement {
   }
 
   handleButtonClick() {
-    const fadeOut = this.formElement.animate(fadeOutAndTranslateXAnimation, fadeAndTranslateXAnimationTiming);
+    const fadeOut = this.animate(fadeOutAndTranslateXAnimation, fadeAndTranslateXAnimationTiming);
     fadeOut.onfinish = () => {
-      this.replaceChildren(this.successElement);
-      this.successElement.animate(fadeInAndTranslateXAnimation, fadeAndTranslateXAnimationTiming);
+      this.replaceChildren(this.formSuccessElement);
+      this.formSuccessElement.animate(fadeInAndTranslateXAnimation, fadeAndTranslateXAnimationTiming);
     };
   }
 }

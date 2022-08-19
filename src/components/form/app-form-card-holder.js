@@ -1,10 +1,10 @@
-class AppFormCardHolder extends HTMLElement {
+class AppFormCardHolder extends HTMLLabelElement {
   #initialCall = true;
-  labelElement = document.createElement("label");
   titleElement = document.createElement("span");
   inputContainerElement = document.createElement("span");
   inputElement = document.createElement("input");
   inputBorderElement = document.createElement("span");
+  appFormError = document.createElement("p", { is: "app-form-error" });
 
   constructor() {
     super();
@@ -24,17 +24,17 @@ class AppFormCardHolder extends HTMLElement {
     if (this.isValid) {
       if (this.inputBorderElement.classList.contains("before:bg-input-error")) this.inputBorderElement.classList.remove("before:bg-input-error");
       if (!this.inputBorderElement.classList.contains("before:bg-light-grayish-violet")) this.inputBorderElement.classList.add("before:bg-light-grayish-violet");
-      if (this.appFormError.isConnected) this.labelElement.removeChild(this.appFormError);
+      if (this.appFormError.isConnected) this.removeChild(this.appFormError);
     } else {
       if (this.inputBorderElement.classList.contains("before:bg-light-grayish-violet")) this.inputBorderElement.classList.remove("before:bg-light-grayish-violet");
       if (!this.inputBorderElement.classList.contains("before:bg-input-error")) this.inputBorderElement.classList.add("before:bg-input-error");
-      if (!this.appFormError.isConnected) this.labelElement.append(this.appFormError);
+      if (!this.appFormError.isConnected) this.append(this.appFormError);
     }
   }
 
   connectedCallback() {
     if (this.#initialCall) {
-      this.labelElement.classList.add("form__section");
+      this.classList.add("form__section");
       this.titleElement.classList.add("form__title");
       this.inputContainerElement.classList.add("form__input-container");
       this.inputElement.classList.add("form__input");
@@ -46,8 +46,7 @@ class AppFormCardHolder extends HTMLElement {
       this.inputElement.setAttribute("required", "");
       this.inputElement.setAttribute("pattern", "^(?:[a-zA-Z]+ ){1,2}[a-zA-Z]+$");
       this.inputContainerElement.append(this.inputElement, this.inputBorderElement);
-      this.labelElement.append(this.titleElement, this.inputContainerElement);
-      this.append(this.labelElement);
+      this.append(this.titleElement, this.inputContainerElement);
       this.#initialCall = false;
     }
     this.inputElement.addEventListener("keyup", this.handleInputKeyUp);
