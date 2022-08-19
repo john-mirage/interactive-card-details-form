@@ -1,13 +1,14 @@
 class AppFormCardHolder extends HTMLElement {
   #initialCall = true;
+  labelElement = document.createElement("label");
+  titleElement = document.createElement("span");
+  inputContainerElement = document.createElement("span");
+  inputElement = document.createElement("input");
+  inputBorderElement = document.createElement("span");
 
   constructor() {
     super();
-    this.labelElement = template.content.firstElementChild.cloneNode(true);
-    this.inputElement = this.labelElement.querySelector('[data-name="input"]');
-    this.inputBorderElement = this.labelElement.querySelector('[data-name="input-border"]');
     this.handleInputKeyUp = this.handleInputKeyUp.bind(this);
-    this.appFormError = document.createElement("app-form-error");
   }
 
   get isValid() {
@@ -33,6 +34,19 @@ class AppFormCardHolder extends HTMLElement {
 
   connectedCallback() {
     if (this.#initialCall) {
+      this.labelElement.classList.add("form__section");
+      this.titleElement.classList.add("form__title");
+      this.inputContainerElement.classList.add("form__input-container");
+      this.inputElement.classList.add("form__input");
+      this.inputBorderElement.classList.add("form__input-border");
+      this.titleElement.textContent = "cardholder name";
+      this.inputElement.setAttribute("type", "text");
+      this.inputElement.setAttribute("name", "cardHolder");
+      this.inputElement.setAttribute("placeholder", "e.g. Jane Appleseed");
+      this.inputElement.setAttribute("required", "");
+      this.inputElement.setAttribute("pattern", "^(?:[a-zA-Z]+ ){1,2}[a-zA-Z]+$");
+      this.inputContainerElement.append(this.inputElement, this.inputBorderElement);
+      this.labelElement.append(this.titleElement, this.inputContainerElement);
       this.append(this.labelElement);
       this.#initialCall = false;
     }

@@ -1,14 +1,14 @@
-const template = document.getElementById("template-app-form-card-cvc");
+class AppFormCardCvc extends HTMLLabelElement {
+  #initialCall = true;
+  labelElement = document.createElement("label");
+  titleElement = document.createElement("span");
+  inputContainerElement = document.createElement("span");
+  inputElement = document.createElement("input");
+  inputBorderElement = document.createElement("span");
 
-class AppFormCardCvc extends HTMLElement {
   constructor() {
     super();
-    this.initialCall = true;
-    this.labelElement = template.content.firstElementChild.cloneNode(true);
-    this.inputElement = this.labelElement.querySelector('[data-name="input"]');
-    this.inputBorderElement = this.labelElement.querySelector('[data-name="input-border"]');
     this.handleInputKeyUp = this.handleInputKeyUp.bind(this);
-    this.appFormError = document.createElement("app-form-error");
   }
 
   get isValid() {
@@ -33,9 +33,24 @@ class AppFormCardCvc extends HTMLElement {
   }
 
   connectedCallback() {
-    if (this.initialCall) {
+    if (this.#initialCall) {
+      this.labelElement.classList.add("form__section");
+      this.titleElement.classList.add("form__title");
+      this.inputContainerElement.classList.add("form__input-container");
+      this.inputElement.classList.add("form__input");
+      this.inputBorderElement.classList.add("form__input-border");
+      this.titleElement.textContent = "cvc";
+      this.inputElement.setAttribute("type", "text");
+      this.inputElement.setAttribute("name", "cardCvc");
+      this.inputElement.setAttribute("placeholder", "e.g. 123");
+      this.inputElement.setAttribute("required", "");
+      this.inputElement.setAttribute("minlength", "3");
+      this.inputElement.setAttribute("maxlength", "3");
+      this.inputElement.setAttribute("pattern", "^[0-9]{3}$");
+      this.inputContainerElement.append(this.inputElement, this.inputBorderElement);
+      this.labelElement.append(this.titleElement, this.inputContainerElement);
       this.append(this.labelElement);
-      this.initialCall = false;
+      this.#initialCall = false;
     }
     this.inputElement.addEventListener("keyup", this.handleInputKeyUp);
   }

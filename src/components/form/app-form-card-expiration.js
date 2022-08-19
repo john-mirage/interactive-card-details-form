@@ -1,18 +1,22 @@
-const template = document.getElementById("template-app-form-card-expiration-date");
+class AppFormCardExpiration extends HTMLDivElement {
+  #initialCall = true;
+  sectionElement = document.createElement("div");
+  titleElement = document.createElement("div");
+  rowElement = document.createElement("div");
+  labelMonthElement = document.createElement("label");
+  titleMonthElement = document.createElement("span");
+  inputMonthElement = document.createElement("input");
+  inputBorderMonthElement = document.createElement("span");
+  labelYearElement = document.createElement("label");
+  titleYearElement = document.createElement("span");
+  inputYearElement = document.createElement("input");
+  inputBorderYearElement = document.createElement("span");
+  isValid = false;
 
-class AppFormCardExpiration extends HTMLElement {
   constructor() {
     super();
-    this.initialCall = true;
-    this.containerElement = template.content.firstElementChild.cloneNode(true);
-    this.monthInputElement = this.containerElement.querySelector('[data-name="month-input"]');
-    this.monthInputBorderElement = this.containerElement.querySelector('[data-name="month-input-border"]');
-    this.yearInputElement = this.containerElement.querySelector('[data-name="year-input"]');
-    this.yearInputBorderElement = this.containerElement.querySelector('[data-name="year-input-border"]');
     this.handleMonthInputKeyUp = this.handleMonthInputKeyUp.bind(this);
     this.handleYearInputKeyUp = this.handleYearInputKeyUp.bind(this);
-    this.appFormError = document.createElement("app-form-error");
-    this.isValid = false;
   }
 
   get monthIsValid() {
@@ -54,9 +58,41 @@ class AppFormCardExpiration extends HTMLElement {
   }
 
   connectedCallback() {
-    if (this.initialCall) {
-      this.append(this.containerElement);
-      this.initialCall = false;
+    if (this.#initialCall) {
+      this.sectionElement.classList.add("form__section", "form__section--row");
+      this.titleElement.classList.add("form__title");
+      this.rowElement.classList.add("form__row");
+      this.labelMonthElement.classList.add("form__input-container");
+      this.titleMonthElement.classList.add("form__hidden-title");
+      this.inputMonthElement.classList.add("form__input", "form__input--uppercase");
+      this.inputBorderMonthElement.classList.add("form__input-border");
+      this.labelYearElement.classList.add("form__input-container");
+      this.titleYearElement.classList.add("form__hidden-title");
+      this.inputYearElement.classList.add("form__input", "form__input--uppercase");
+      this.inputBorderYearElement.classList.add("form__input-border");
+      this.inputMonthElement.setAttribute("type", "text");
+      this.inputMonthElement.setAttribute("name", "cardExpirationDateMonth");
+      this.inputMonthElement.setAttribute("placeholder", "mm");
+      this.inputMonthElement.setAttribute("required", "");
+      this.inputMonthElement.setAttribute("minlength", "2");
+      this.inputMonthElement.setAttribute("maxlength", "2");
+      this.inputMonthElement.setAttribute("pattern", "^0[0-9]$|^1[0-2]$");
+      this.inputYearElement.setAttribute("type", "text");
+      this.inputYearElement.setAttribute("name", "cardExpirationDateYear");
+      this.inputYearElement.setAttribute("placeholder", "yy");
+      this.inputYearElement.setAttribute("required", "");
+      this.inputYearElement.setAttribute("minlength", "2");
+      this.inputYearElement.setAttribute("maxlength", "2");
+      this.inputYearElement.setAttribute("pattern", "^[2-9][2-9]$");
+      this.titleElement.textContent = "exp. date (mm/yy)";
+      this.titleMonthElement.textContent = "expiration date month";
+      this.titleYearElement.textContent = "expiration date year";
+      this.labelMonthElement.append(this.titleMonthElement, this.inputMonthElement, this.inputBorderMonthElement);
+      this.labelYearElement.append(this.titleYearElement, this.inputYearElement, this.inputBorderYearElement);
+      this.rowElement.append(this.labelMonthElement, this.labelYearElement);
+      this.sectionElement.append(this.titleElement, this.rowElement);
+      this.append(this.sectionElement);
+      this.#initialCall = false;
     }
     this.monthInputElement.addEventListener("keyup", this.handleMonthInputKeyUp);
     this.yearInputElement.addEventListener("keyup", this.handleYearInputKeyUp);
