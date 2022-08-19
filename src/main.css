@@ -1,3 +1,21 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "styles/background.css";
+@import "styles/page.css";
+@import "styles/card.css";
+@import "styles/form.css";
+@import "styles/success-view.css";
+
+:root {
+  "transparent": "transparent",
+      "input-active-left": "hsl(249, 99%, 64%)",
+      "input-active-right": "hsl(278, 94%, 30%)",
+      "input-error": "hsl(0, 100%, 66%)",
+      "white": "hsl(0, 0%, 100%)",
+      "light-grayish-violet": "hsl(270, 3%, 87%)",
+      "dark-grayish-violet": "hsl(279, 6%, 55%)",
+      "very-dark-violet": "hsl(278, 68%, 11%)",
+}
+
+sans: [
+          'Space Grotesk',
+          ...defaultTheme.fontFamily.sans,
+        ],
