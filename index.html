@@ -41,52 +41,6 @@
   <!-- app -->
   <div class="page__app" id="app"></div>
 
-  <!-- template | app root -->
-  <template id="template-app-root">
-    <main class="page__container">
-      <h1 class="page__title">Interactive card details form</h1>
-      <app-card class="card"></app-card>
-      <app-form></app-form>
-    </main>
-  </template>
-
-  <!-- template | app card -->
-  <template id="template-app-card">
-    <app-card-back class="card__back"></app-card-back>
-    <app-card-front class="card__front"></app-card-front>
-  </template>
-
-  <!-- template | app card back -->
-  <template id="template-app-card-back">
-    <img class="card__image" src="/src/images/bg-card-back.png" alt="bank card back illustration">
-    <svg class="card__overlay" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 447 245">
-      <text class="card__text card__text--body card__text--uppercase" x="360" y="126" data-name="card-cvc"></text>
-    </svg>
-  </template>
-
-  <!-- template | app card front -->
-  <template id="template-app-card-front">
-    <img class="card__image" src="/src/images/bg-card-front.png" alt="bank card front illustration">
-    <svg class="card__overlay" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 447 245">
-      <image x="20" y="20" href="/src/images/card-logo.svg" width="84" height="47"/>
-      <text class="card__text card__text--heading" x="20" y="164" data-name="card-number"></text>
-      <text class="card__text card__text--body card__text--uppercase" x="20" y="214" data-name="card-holder"></text>
-      <text class="card__text card__text--body" x="380" y="214">
-        <tspan data-name="card-expiration-date-month"></tspan>/<tspan data-name="card-expiration-date-year"></tspan></text>
-      </svg>
-  </template>
-
-  <!-- template | app form -->
-  <template id="template-app-form">
-    <form class="form">
-      <app-form-card-holder></app-form-card-holder>
-      <app-form-card-number></app-form-card-number>
-      <app-form-card-expiration-date></app-form-card-expiration-date>
-      <app-form-card-cvc></app-form-card-cvc>
-      <button type="button" class="form__button" disabled data-name="button">Confirm</button>
-    </form>
-  </template>
-
   <!-- template | app form card holder -->
   <template id="template-app-form-card-holder">
     <label class="form__section">
@@ -185,30 +139,6 @@
         <span class="form__input-border" data-name="input-border"></span>
       </span>
     </label>
-  </template>
-
-  <!-- template | app form error -->
-  <template id="template-app-form-error">
-    <p class="form__error"></p>
-  </template>
-
-  <!-- template | app form success -->
-  <template id="template-app-form-success">
-    <div class="success-view">
-      <svg class="success-view__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
-        <circle cx="40" cy="40" r="40" fill="url(#a)"/>
-        <path d="M28 39.92 36.08 48l16-16" stroke="#fff" stroke-width="3"/>
-        <defs>
-          <linearGradient id="a" x1="-23.014" y1="11.507" x2="0" y2="91.507" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#6348FE"/>
-            <stop offset="1" stop-color="#610595"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      <h2 class="success-view__title">thank you!</h2>
-      <p class="success-view__description">We've added your card details</p>
-      <button class="success-view__button">Continue</button>
-    </div>
   </template>
 
   <script type="module" src="/src/main.js"></script>

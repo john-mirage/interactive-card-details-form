@@ -1,9 +1,8 @@
-const template = document.getElementById("template-app-form-card-holder");
-
 class AppFormCardHolder extends HTMLElement {
+  #initialCall = true;
+
   constructor() {
     super();
-    this.initialCall = true;
     this.labelElement = template.content.firstElementChild.cloneNode(true);
     this.inputElement = this.labelElement.querySelector('[data-name="input"]');
     this.inputBorderElement = this.labelElement.querySelector('[data-name="input-border"]');
@@ -33,9 +32,9 @@ class AppFormCardHolder extends HTMLElement {
   }
 
   connectedCallback() {
-    if (this.initialCall) {
+    if (this.#initialCall) {
       this.append(this.labelElement);
-      this.initialCall = false;
+      this.#initialCall = false;
     }
     this.inputElement.addEventListener("keyup", this.handleInputKeyUp);
   }

@@ -1,12 +1,11 @@
-const template = document.getElementById("template-app-root");
-
 class AppRoot extends HTMLElement {
+  #initialCall = true;
+  titleElement = document.createElement("h1");
+  appCard = document.createElement("div", { is: "app-card" });
+  appForm = document.createElement("form", { is: "app-form" });
+
   constructor() {
     super();
-    this.initialCall = true;
-    this.mainElement = template.content.firstElementChild.cloneNode(true);
-    this.appCard = this.mainElement.querySelector("app-card");
-    this.appForm = this.mainElement.querySelector("app-form");
     this.handleCardNumber = this.handleCardNumber.bind(this);
     this.handleCardHolder = this.handleCardHolder.bind(this);
     this.handleCardExpirationDateMonth = this.handleCardExpirationDateMonth.bind(this);
@@ -15,10 +14,10 @@ class AppRoot extends HTMLElement {
   }
 
   connectedCallback() {
-    if (this.initialCall) {
-      this.classList.add("block", "w-full");
-      this.append(this.mainElement);
-      this.initialCall = false;
+    if (this.#initialCall) {
+      this.classList.add("page__container");
+      this.append(this.appCard, this.appForm);
+      this.#initialCall = false;
     }
     this.addEventListener("update-card-number", this.handleCardNumber);
     this.addEventListener("update-card-holder", this.handleCardHolder);

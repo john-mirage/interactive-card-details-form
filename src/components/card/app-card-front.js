@@ -1,15 +1,18 @@
-const template = document.getElementById("template-app-card-front");
+const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 
-class AppCardFront extends HTMLElement {
+class AppCardFront extends HTMLDivElement {
+  #initialCall = true;
+  imageElement = document.createElement("img");
+  svgElement = document.createElementNS(SVG_NAMESPACE, "svg");
+  svgImageElement = document.createElementNS(SVG_NAMESPACE, "image");
+  numberElement = document.createElementNS(SVG_NAMESPACE, "text");
+  holderElement = document.createElementNS(SVG_NAMESPACE, "text");
+  expirationElement = document.createElementNS(SVG_NAMESPACE, "text");
+  expirationMonthElement = document.createElementNS(SVG_NAMESPACE, "tspan");
+  expirationYearElement = document.createElementNS(SVG_NAMESPACE, "tspan");
+
   constructor() {
     super();
-    this.initialCall = true;
-    this.imageElement = template.content.firstElementChild.cloneNode(true);
-    this.svgElement = template.content.lastElementChild.cloneNode(true);
-    this.cardNumberElement = this.svgElement.querySelector('[data-name="card-number"]');
-    this.cardHolderElement = this.svgElement.querySelector('[data-name="card-holder"]');
-    this.cardExpirationDateMonthElement = this.svgElement.querySelector('[data-name="card-expiration-date-month"]');
-    this.cardExpirationDateYearElement = this.svgElement.querySelector('[data-name="card-expiration-date-year"]');
   }
 
   get cardNumber() {
@@ -57,7 +60,7 @@ class AppCardFront extends HTMLElement {
       this._cardNumber = cardNumberAsArray.reduce((cardNumberAsString, group, groupIndex) => {
         return `${cardNumberAsString}${groupIndex <= 0 ? "" : " "}${group.join("")}`;
       }, "");
-      this.cardNumberElement.textContent = this.cardNumber;
+      this.numberElement.textContent = this.cardNumber;
     } else {
       throw new Error("invalid parameter");
     }
@@ -66,7 +69,7 @@ class AppCardFront extends HTMLElement {
   set cardHolder(cardHolder) {
     const cleanedCardHolder = cardHolder.length <= 0 ? "Jane Appleseed" : cardHolder.replaceAll(/[^a-zA-Z ]+/g, "").trim();
     this._cardHolder = cleanedCardHolder;
-    this.cardHolderElement.textContent = this.cardHolder.length <= 0 ? "Jane Appleseed" : this.cardHolder;
+    this.holderElement.textContent = this.cardHolder.length <= 0 ? "Jane Appleseed" : this.cardHolder;
   }
 
   set cardExpirationDateMonth(cardExpirationDateMonth) {
@@ -77,7 +80,7 @@ class AppCardFront extends HTMLElement {
         return cleanedCardExpirationDateMonth[charIndex] ? cleanedCardExpirationDateMonth[charIndex].toUpperCase() : char;
       });
       this._cardExpirationDateMonth = cardExpirationDatePeriodAsArray.join("");
-      this.cardExpirationDateMonthElement.textContent = this.cardExpirationDateMonth;
+      this.expirationMonthElement.textContent = this.cardExpirationDateMonth;
     } else {
       throw new Error("invalid parameter");
     }
@@ -91,16 +94,38 @@ class AppCardFront extends HTMLElement {
         return cleanedCardExpirationDateYear[charIndex] ? cleanedCardExpirationDateYear[charIndex].toUpperCase() : char;
       });
       this._cardExpirationDateYear = cardExpirationDatePeriodAsArray.join("");
-      this.cardExpirationDateYearElement.textContent = this.cardExpirationDateYear;
+      this.expirationYearElement.textContent = this.cardExpirationDateYear;
     } else {
       throw new Error("invalid parameter");
     }
   }
 
   connectedCallback() {
-    if (this.initialCall) {
+    if (this.#initialCall) {
+      this.classList.add("card__front");
+      this.imageElement.classList.add("card__image");
+      this.svgElement.classList.add("card__overlay");
+      this.numberElement.classList.add("card__text", "card__text--heading");
+      this.holderElement.classList.add("card__text", "card__text--body", "card__text--uppercase");
+      this.expirationElement.classList.add("card__text", "card__text--body");
+      this.imageElement.setAttribute("src", "/src/images/bg-card-front.png");
+      this.imageElement.setAttribute("alt", "bank card front illustration");
+      this.svgElement.setAttribute("viewbox", "0 0 447 245");
+      this.svgImageElement.setAttribute("x", "20");
+      this.svgImageElement.setAttribute("y", "20");
+      this.svgImageElement.setAttribute("href", "/src/images/card-logo.svg");
+      this.svgImageElement.setAttribute("width", "84");
+      this.svgImageElement.setAttribute("height", "47");
+      this.numberElement.setAttribute("x", "20");
+      this.numberElement.setAttribute("y", "164");
+      this.holderElement.setAttribute("x", "20");
+      this.holderElement.setAttribute("y", "214");
+      this.expirationElement.setAttribute("x", "380");
+      this.expirationElement.setAttribute("y", "214");
+      this.expirationElement.append(this.expirationMonthElement, this.expirationYearElement);
+      this.svgElement.append(this.svgImageElement, this.numberElement, this.holderElement, this.expirationElement);
       this.append(this.imageElement, this.svgElement);
-      this.initialCall = false;
+      this.#initialCall = false;
     }
     this.cardNumberElement.textContent = this.cardNumber;
     this.cardHolderElement.textContent = this.cardHolder;

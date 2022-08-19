@@ -1,6 +1,3 @@
-const formTemplate = document.getElementById("template-app-form");
-const successTemplate = document.getElementById("template-app-success");
-
 export const fadeInAndTranslateXAnimation = [
   { opacity: 0, transform: "translateX(4rem)", offset: 0 },
   { opacity: 1, transform: "translateX(0)", offset: 1 }
@@ -16,17 +13,16 @@ export const fadeAndTranslateXAnimationTiming = {
   easing: "ease-in-out",
 }
 
-class AppForm extends HTMLElement {
+class AppForm extends HTMLFormElement {
+  #initialCall = true;
+  appFormCardHolder = document.createElement("label", { is: "app-form-card-holder" });
+  appFormCardNumber = document.createElement("label", { is: "app-form-card-number" });
+  appFormCardExpirationDate = document.createElement("div", { is: "app-form-card-expiration-date" });
+  appFormCardCvc = document.createElement("label", { is: "app-form-card-cvc" });
+  buttonElement = document.createElement("button");
+
   constructor() {
     super();
-    this.initialCall = true;
-    this.formElement = formTemplate.content.firstElementChild.cloneNode(true);
-    this.successElement = successTemplate.content.firstElementChild.cloneNode(true);
-    this.appFormCardHolder = this.formElement.querySelector("app-form-card-holder");
-    this.appFormCardNumber = this.formElement.querySelector("app-form-card-number");
-    this.appFormCardExpirationDate = this.formElement.querySelector("app-form-card-expiration-date");
-    this.appFormCardCvc = this.formElement.querySelector("app-form-card-cvc");
-    this.buttonElement = this.formElement.querySelector('[data-name="button"]');
     this.handleButtonState = this.handleButtonState.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
   }
@@ -53,9 +49,19 @@ class AppForm extends HTMLElement {
   }
 
   connectedCallback() {
-    if (this.initialCall) {
-      this.append(this.formElement);
-      this.initialCall = false;
+    if (this.#initialCall) {
+      this.classList.add("form");
+      this.buttonElement.classList.add("form__button");
+      this.buttonElement.setAttribute("type", "button");
+      this.buttonElement.setAttribute("disabled", "");
+      this.append(
+        this.appFormCardHolder,
+        this.appFormCardNumber,
+        this.appFormCardExpirationDate,
+        this.appFormCardCvc,
+        this.buttonElement
+      );
+      this.#initialCall = false;
     }
     this.addEventListener("update-form", this.handleButtonState);
     this.buttonElement.addEventListener("click", this.handleButtonClick);

@@ -1,6 +1,6 @@
 const template = document.getElementById("template-app-form-card-expiration-date");
 
-class AppFormCardExpirationDate extends HTMLElement {
+class AppFormCardExpiration extends HTMLElement {
   constructor() {
     super();
     this.initialCall = true;
@@ -121,4 +121,4 @@ class AppFormCardExpirationDate extends HTMLElement {
   }
 }
 
-export default AppFormCardExpirationDate;
+export default AppFormCardExpiration;
