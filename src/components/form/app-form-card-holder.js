@@ -21,7 +21,7 @@ class AppFormCardHolder extends HTMLLabelElement {
    * @returns {boolean} The state of the input.
    */
   get isValid() {
-    return this.#isValid === null ? this.#isValid : false;
+    return this.#isValid === undefined ? false : this.#isValid;
   }
 
   /**

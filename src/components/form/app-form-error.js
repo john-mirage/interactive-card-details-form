@@ -15,7 +15,7 @@ class AppFormMessage extends HTMLParagraphElement {
    * @returns {string} The message.
    */
   get message() {
-    return this.#message === null ? this.#message : "";
+    return this.#message === undefined ? "" : this.#message;
   }
 
   /**

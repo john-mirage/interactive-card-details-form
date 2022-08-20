@@ -30,7 +30,7 @@ class AppFormCardExpiration extends HTMLDivElement {
    * @returns {boolean} The month input validity state.
    */
   get monthIsValid() {
-    return this.#monthIsValid === null ? this.#monthIsValid : false;
+    return this.#monthIsValid === undefined ? false : this.#monthIsValid;
   }
 
   /**
@@ -39,7 +39,7 @@ class AppFormCardExpiration extends HTMLDivElement {
    * @returns {boolean} The year input validity state.
    */
   get yearIsValid() {
-    return this.#yearIsValid === null ? this.#yearIsValid : false;
+    return this.#yearIsValid === undefined ? false : this.#yearIsValid;
   }
 
   /**
@@ -171,7 +171,6 @@ class AppFormCardExpiration extends HTMLDivElement {
     const yearInputIsValid = this.yearInputElement.validity.valid;
     this.monthIsValid = monthInputIsValid;
     this.yearIsValid = yearInputIsValid;
-    console.log(this.monthIsValid, this.yearIsValid);
     if (monthInputIsValid && yearInputIsValid) {
       if (this.appFormError.isConnected) this.removeChild(this.appFormError);
       this.isValid = true;

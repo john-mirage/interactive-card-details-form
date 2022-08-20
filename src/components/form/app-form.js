@@ -38,7 +38,7 @@ class AppForm extends HTMLFormElement {
    * @returns {boolean} The state of the form validity.
    */
   get isValid() {
-    return this.#isValid === null ? this.#isValid : false;
+    return this.#isValid === undefined ? false : this.#isValid;
   }
 
   /**

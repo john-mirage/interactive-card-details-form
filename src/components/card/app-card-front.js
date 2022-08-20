@@ -31,7 +31,7 @@ class AppCardFront extends HTMLDivElement {
    * @returns {string} The card number.
    */
   get cardNumber() {
-    return this.#cardNumber === null ? this.#cardNumber : "0000 0000 0000 0000";
+    return this.#cardNumber === undefined ? "0000 0000 0000 0000" : this.#cardNumber;
   }
 
   /**
@@ -40,7 +40,7 @@ class AppCardFront extends HTMLDivElement {
    * @returns {string} The card holder.
    */
   get cardHolder() {
-    return this.#cardHolder === null ? this.#cardHolder : "jane appleseed";
+    return this.#cardHolder === undefined ? "jane appleseed" : this.#cardHolder;
   }
 
   /**
@@ -49,7 +49,7 @@ class AppCardFront extends HTMLDivElement {
    * @returns {string} The card expiration month.
    */
   get cardExpirationMonth() {
-    return this.#cardExpirationMonth === null ? this.#cardExpirationMonth : "00";
+    return this.#cardExpirationMonth === undefined ? "00" : this.#cardExpirationMonth;
   }
 
   /**
@@ -58,7 +58,7 @@ class AppCardFront extends HTMLDivElement {
    * @returns {string} The card expiration year.
    */
   get cardExpirationYear() {
-    return this.#cardExpirationYear === null ? this.#cardExpirationYear : "00";
+    return this.#cardExpirationYear === undefined ? "00" : this.#cardExpirationYear;
   }
 
   /**

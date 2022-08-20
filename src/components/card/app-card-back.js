@@ -22,7 +22,7 @@ class AppCardBack extends HTMLDivElement {
    * @returns {string} The card cvc.
    */
   get cardCvc() {
-    return this.#cardCvc === null ? this.#cardCvc : "000";
+    return this.#cardCvc === undefined ? "000" : this.#cardCvc;
   }
 
   /**

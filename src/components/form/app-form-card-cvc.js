@@ -21,7 +21,7 @@ class AppFormCardCvc extends HTMLLabelElement {
    * @returns {boolean} The input validity state.
    */
   get isValid() {
-    return this.#isValid === null ? this.#isValid : false;
+    return this.#isValid === undefined ? false : this.#isValid;
   }
 
   /**
