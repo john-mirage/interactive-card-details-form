@@ -122,6 +122,12 @@
   transition: opacity 150ms;
 }
 
+.form__button:focus-visible {
+  outline-width: 0.125rem;
+  outline-offset: 0.25rem;
+  outline-color: var(--color-very-dark-violet);
+}
+
 .form__button--enabled:hover {
   opacity: 0.8;
 }
