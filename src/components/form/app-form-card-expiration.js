@@ -1,4 +1,6 @@
 class AppFormCardExpiration extends HTMLDivElement {
+  #monthIsValid;
+  #yearIsValid;
   #initialCall = true;
   titleElement = document.createElement("div");
   rowElement = document.createElement("div");
@@ -13,30 +15,40 @@ class AppFormCardExpiration extends HTMLDivElement {
   appFormError = document.createElement("p", { is: "app-form-error" });
   isValid = false;
 
+  /**
+   * @constructor.
+   */
   constructor() {
     super();
     this.handleMonthInputKeyUp = this.handleMonthInputKeyUp.bind(this);
     this.handleYearInputKeyUp = this.handleYearInputKeyUp.bind(this);
   }
 
+  /**
+   * Get the month input validity state.
+   * 
+   * @returns {boolean} The month input validity state.
+   */
   get monthIsValid() {
-    if (this.hasOwnProperty("_monthIsValid")) {
-      return this._monthIsValid;
-    } else {
-      return false;
-    }
+    return this.#monthIsValid === null ? this.#monthIsValid : false;
   }
 
+  /**
+   * Get the year input validity state.
+   * 
+   * @returns {boolean} The year input validity state.
+   */
   get yearIsValid() {
-    if (this.hasOwnProperty("_yearIsValid")) {
-      return this._yearIsValid;
-    } else {
-      return false;
-    }
+    return this.#yearIsValid === null ? this.#yearIsValid : false;
   }
 
+  /**
+   * Set the month input validity state.
+   * 
+   * @param {boolean} monthIsValid - The month input validity state.
+   */
   set monthIsValid(monthIsValid) {
-    this._monthIsValid = monthIsValid;
+    this.#monthIsValid = monthIsValid;
     if (this.monthIsValid) {
       if (this.monthInputElement.classList.contains("form__input--error")) this.monthInputElement.classList.remove("form__input--error");
     } else if (!this.monthInputElement.classList.contains("form__input--error")) {
@@ -44,8 +56,13 @@ class AppFormCardExpiration extends HTMLDivElement {
     }
   }
 
+  /**
+   * Set the year input validity state.
+   * 
+   * @param {boolean} yearIsValid - The year input validity state.
+   */
   set yearIsValid(yearIsValid) {
-    this._yearIsValid = yearIsValid;
+    this.#yearIsValid = yearIsValid;
     if (this.yearIsValid) {
       if (this.yearInputElement.classList.contains("form__input--error")) this.yearInputElement.classList.remove("form__input--error");
     } else if (!this.yearInputElement.classList.contains("form__input--error")) {
@@ -53,6 +70,9 @@ class AppFormCardExpiration extends HTMLDivElement {
     }
   }
 
+  /**
+   * Connected callback.
+   */
   connectedCallback() {
     if (this.#initialCall) {
       this.classList.add("form__section", "form__section--row");
@@ -93,11 +113,19 @@ class AppFormCardExpiration extends HTMLDivElement {
     this.yearInputElement.addEventListener("keyup", this.handleYearInputKeyUp);
   }
 
+  /**
+   * Disconnected callback.
+   */
   disconnectedCallback() {
     this.monthInputElement.removeEventListener("keyup", this.handleMonthInputKeyUp);
     this.yearInputElement.removeEventListener("keyup", this.handleYearInputKeyUp);
   }
 
+  /**
+   * Handle the month input key up.
+   * 
+   * @param {KeyboardEvent} event - The event.
+   */
   handleMonthInputKeyUp(event) {
     const cardExpirationMonth = event.target.value;
     if (typeof cardExpirationMonth === "string") {
@@ -114,6 +142,11 @@ class AppFormCardExpiration extends HTMLDivElement {
     }
   }
 
+  /**
+   * Handle the year input key up.
+   * 
+   * @param {KeyboardEvent} event - The event.
+   */
   handleYearInputKeyUp(event) {
     const cardExpirationYear = event.target.value;
     if (typeof cardExpirationYear === "string") {
@@ -130,6 +163,9 @@ class AppFormCardExpiration extends HTMLDivElement {
     }
   }
 
+  /**
+   * Validate the inputs.
+   */
   validateInputs() {
     const monthInputIsValid = this.monthInputElement.validity.valid;
     const yearInputIsValid = this.yearInputElement.validity.valid;

@@ -1,4 +1,5 @@
 class AppFormCardHolder extends HTMLLabelElement {
+  #isValid;
   #initialCall = true;
   titleElement = document.createElement("span");
   inputContainerElement = document.createElement("span");
@@ -6,21 +7,30 @@ class AppFormCardHolder extends HTMLLabelElement {
   inputBorderElement = document.createElement("span");
   appFormError = document.createElement("p", { is: "app-form-error" });
 
+  /**
+   * @constructor.
+   */
   constructor() {
     super();
     this.handleInputKeyUp = this.handleInputKeyUp.bind(this);
   }
 
+  /**
+   * Get the state of the input.
+   * 
+   * @returns {boolean} The state of the input.
+   */
   get isValid() {
-    if (this.hasOwnProperty("_isValid")) {
-      return this._isValid;
-    } else {
-      return false;
-    }
+    return this.#isValid === null ? this.#isValid : false;
   }
 
+  /**
+   * Set the state of the input.
+   * 
+   * @param {boolean} isValid - The state of the input.
+   */
   set isValid(isValid) {
-    this._isValid = isValid;
+    this.#isValid = isValid;
     if (this.isValid) {
       if (this.inputElement.classList.contains("form__input--error")) this.inputElement.classList.remove("form__input--error");
       if (this.appFormError.isConnected) this.removeChild(this.appFormError);
@@ -30,6 +40,9 @@ class AppFormCardHolder extends HTMLLabelElement {
     }
   }
 
+  /**
+   * Connected callback.
+   */
   connectedCallback() {
     if (this.#initialCall) {
       this.classList.add("form__section");
@@ -50,10 +63,18 @@ class AppFormCardHolder extends HTMLLabelElement {
     this.inputElement.addEventListener("keyup", this.handleInputKeyUp);
   }
 
+  /**
+   * Disconnected callback.
+   */
   disconnectedCallback() {
     this.inputElement.removeEventListener("keyup", this.handleInputKeyUp);
   }
 
+  /**
+   * Handle the input key up.
+   * 
+   * @param {KeyboardEvent} event - The event. 
+   */
   handleInputKeyUp(event) {
     const holder = event.target.value;
     if (typeof holder === "string") {
@@ -70,6 +91,9 @@ class AppFormCardHolder extends HTMLLabelElement {
     }
   }
 
+  /**
+   * Validate the input.
+   */
   validateInput() {
     if (this.inputElement.validity.valid) {
       this.isValid = true;

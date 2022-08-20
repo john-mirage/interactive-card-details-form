@@ -12,6 +12,9 @@ import AppFormCardCvc from "@components/form/app-form-card-cvc";
 import AppFormError from "@components/form/app-form-error";
 import AppFormSuccess from "@components/form/app-form-success";
 
+/**
+ * Custom elements declaration.
+ */
 customElements.define("app-root", AppRoot, { extends: "main" });
 customElements.define("app-card", AppCard, { extends: "div" });
 customElements.define("app-card-back", AppCardBack, { extends: "div" });
@@ -24,6 +27,9 @@ customElements.define("app-form-card-cvc", AppFormCardCvc, { extends: "label" })
 customElements.define("app-form-error", AppFormError, { extends: "p" });
 customElements.define("app-form-success", AppFormSuccess, { extends: "div" });
 
+/**
+ * Mount app.
+ */
 const app = document.getElementById("app");
 const appRoot = document.createElement("main", { is: "app-root" });
 

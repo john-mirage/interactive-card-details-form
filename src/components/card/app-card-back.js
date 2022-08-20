@@ -3,23 +3,33 @@ import backgroundImage from "@images/bg-card-back.png";
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 
 class AppCardBack extends HTMLDivElement {
+  #cardCvc;
   #initialCall = true;
   imageElement = document.createElement("img");
   svgElement = document.createElementNS(SVG_NAMESPACE, "svg");
   cvcElement = document.createElementNS(SVG_NAMESPACE, "text");
 
+  /**
+   * @constructor.
+   */
   constructor() {
     super();
   }
 
+  /**
+   * Get the card cvc.
+   * 
+   * @returns {string} The card cvc.
+   */
   get cardCvc() {
-    if (this.hasOwnProperty("_cardCvc")) {
-      return this._cardCvc;
-    } else {
-      return "000";
-    }
+    return this.#cardCvc === null ? this.#cardCvc : "000";
   }
 
+  /**
+   * Set the card cvc.
+   * 
+   * @param {string} cardCvc - The card cvc.
+   */
   set cardCvc(cardCvc) {
     if (typeof cardCvc === "string") {
       const cleanedCardCvc = cardCvc.replaceAll(/[^0-9]+/g, "");
@@ -27,13 +37,16 @@ class AppCardBack extends HTMLDivElement {
       const cardCvcAsArray = emptyCardCvc.map((char, charIndex) => {
         return cleanedCardCvc[charIndex] ? cleanedCardCvc[charIndex].toUpperCase() : char;
       });
-      this._cardCvc = cardCvcAsArray.join("");
+      this.#cardCvc = cardCvcAsArray.join("");
       this.cvcElement.textContent = this.cardCvc;
     } else {
       throw new Error("invalid parameter");
     }
   }
 
+  /**
+   * Connected callback.
+   */
   connectedCallback() {
     if (this.#initialCall) {
       this.classList.add("card__back");

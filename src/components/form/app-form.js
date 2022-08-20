@@ -14,6 +14,7 @@ export const fadeAndTranslateXAnimationTiming = {
 }
 
 class AppForm extends HTMLFormElement {
+  #isValid;
   #initialCall = true;
   appFormCardHolder = document.createElement("label", { is: "app-form-card-holder" });
   appFormCardNumber = document.createElement("label", { is: "app-form-card-number" });
@@ -22,22 +23,31 @@ class AppForm extends HTMLFormElement {
   buttonElement = document.createElement("button");
   formSuccessElement = document.createElement("div", { is: "app-form-success" });
 
+  /**
+   * @constructor.
+   */
   constructor() {
     super();
     this.handleButtonState = this.handleButtonState.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
   }
 
+  /**
+   * Get the state of the form validity.
+   * 
+   * @returns {boolean} The state of the form validity.
+   */
   get isValid() {
-    if (this.hasOwnProperty("_isValid")) {
-      return this._isValid;
-    } else {
-      return false;
-    }
+    return this.#isValid === null ? this.#isValid : false;
   }
 
+  /**
+   * Set the state of the form validity.
+   * 
+   * @param {boolean} isValid - The state of the form validity.
+   */
   set isValid(isValid) {
-    this._isValid = isValid;
+    this.#isValid = isValid;
     if (this.isValid) {
       if (this.buttonElement.hasAttribute("disabled")) this.buttonElement.removeAttribute("disabled");
       if (this.buttonElement.classList.contains("form__button--disabled")) this.buttonElement.classList.remove("form__button--disabled");
@@ -49,6 +59,9 @@ class AppForm extends HTMLFormElement {
     }
   }
 
+  /**
+   * Connected callback.
+   */
   connectedCallback() {
     if (this.#initialCall) {
       this.classList.add("form");
@@ -69,11 +82,17 @@ class AppForm extends HTMLFormElement {
     this.buttonElement.addEventListener("click", this.handleButtonClick);
   }
 
+  /**
+   * Disconnected callback.
+   */
   disconnectedCallback() {
     this.removeEventListener("update-form", this.handleButtonState);
     this.buttonElement.removeEventListener("click", this.handleButtonClick);
   }
 
+  /**
+   * Handle the button state.
+   */
   handleButtonState() {
     if (
       this.appFormCardHolder.isValid &&
@@ -87,6 +106,9 @@ class AppForm extends HTMLFormElement {
     }
   }
 
+  /**
+   * Handle button click.
+   */
   handleButtonClick() {
     const fadeOut = this.animate(fadeOutAndTranslateXAnimation, fadeAndTranslateXAnimationTiming);
     fadeOut.onfinish = () => {

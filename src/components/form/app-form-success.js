@@ -7,10 +7,16 @@ class AppFormSuccess extends HTMLDivElement {
   descriptionElement = document.createElement("p");
   buttonElement = document.createElement("button");
 
+  /**
+   * @constructor.
+   */
   constructor() {
     super();
   }
 
+  /**
+   * Connected callback.
+   */
   connectedCallback() {
     if (this.#initialCall) {
       this.classList.add("success-view", "form__section");

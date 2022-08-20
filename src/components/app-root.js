@@ -4,37 +4,51 @@ class AppRoot extends HTMLElement {
   appCard = document.createElement("div", { is: "app-card" });
   appForm = document.createElement("form", { is: "app-form" });
 
+  /**
+   * @constructor.
+   */
   constructor() {
     super();
-    this.handleCardNumber = this.handleCardNumber.bind(this);
-    this.handleCardHolder = this.handleCardHolder.bind(this);
-    this.handleCardExpirationDateMonth = this.handleCardExpirationDateMonth.bind(this);
-    this.handleCardExpirationDateYear = this.handleCardExpirationDateYear.bind(this);
-    this.handleCardCvc = this.handleCardCvc.bind(this);
+    this.handleCardNumberUpdate = this.handleCardNumberUpdate.bind(this);
+    this.handleCardHolderUpdate = this.handleCardHolderUpdate.bind(this);
+    this.handleCardExpirationMonthUpdate = this.handleCardExpirationMonthUpdate.bind(this);
+    this.handleCardExpirationYearUpdate = this.handleCardExpirationYearUpdate.bind(this);
+    this.handleCardCvcUpdate = this.handleCardCvcUpdate.bind(this);
   }
 
+  /**
+   * Connected callback.
+   */
   connectedCallback() {
     if (this.#initialCall) {
       this.classList.add("page__container");
       this.append(this.appCard, this.appForm);
       this.#initialCall = false;
     }
-    this.addEventListener("update-card-number", this.handleCardNumber);
-    this.addEventListener("update-card-holder", this.handleCardHolder);
-    this.addEventListener("update-card-expiration-date-month", this.handleCardExpirationDateMonth);
-    this.addEventListener("update-card-expiration-date-year", this.handleCardExpirationDateYear);
-    this.addEventListener("update-card-cvc", this.handleCardCvc);
+    this.addEventListener("update-card-number", this.handleCardNumberUpdate);
+    this.addEventListener("update-card-holder", this.handleCardHolderUpdate);
+    this.addEventListener("update-card-expiration-date-month", this.handleCardExpirationMonthUpdate);
+    this.addEventListener("update-card-expiration-date-year", this.handleCardExpirationYearUpdate);
+    this.addEventListener("update-card-cvc", this.handleCardCvcUpdate);
   }
 
+  /**
+   * Disconnected callback.
+   */
   disconnectedCallback() {
-    this.removeEventListener("update-card-number", this.handleCardNumber);
-    this.removeEventListener("update-card-holder", this.handleCardHolder);
-    this.removeEventListener("update-card-expiration-date-month", this.handleCardExpirationDateMonth);
-    this.removeEventListener("update-card-expiration-date-year", this.handleCardExpirationDateYear);
-    this.removeEventListener("update-card-cvc", this.handleCardCvc);
+    this.removeEventListener("update-card-number", this.handleCardNumberUpdate);
+    this.removeEventListener("update-card-holder", this.handleCardHolderUpdate);
+    this.removeEventListener("update-card-expiration-date-month", this.handleCardExpirationMonthUpdate);
+    this.removeEventListener("update-card-expiration-date-year", this.handleCardExpirationYearUpdate);
+    this.removeEventListener("update-card-cvc", this.handleCardCvcUpdate);
   }
 
-  handleCardNumber(customEvent) {
+  /**
+   * Handle card number update.
+   * 
+   * @param {CustomEvent} customEvent.
+   */
+  handleCardNumberUpdate(customEvent) {
     if (customEvent instanceof CustomEvent) {
       const { cardNumber } = customEvent.detail;
       if (typeof cardNumber === "string") {
@@ -47,7 +61,12 @@ class AppRoot extends HTMLElement {
     }
   }
 
-  handleCardHolder(customEvent) {
+  /**
+   * Handle card holder update.
+   * 
+   * @param {CustomEvent} customEvent.
+   */
+  handleCardHolderUpdate(customEvent) {
     if (customEvent instanceof CustomEvent) {
       const { holder } = customEvent.detail;
       if (typeof holder === "string") {
@@ -60,33 +79,48 @@ class AppRoot extends HTMLElement {
     }
   }
 
-  handleCardExpirationDateMonth(customEvent) {
+  /**
+   * Handle card expiration month update.
+   * 
+   * @param {CustomEvent} customEvent.
+   */
+  handleCardExpirationMonthUpdate(customEvent) {
     if (customEvent instanceof CustomEvent) {
       const { cardExpirationMonth } = customEvent.detail;
       if (typeof cardExpirationMonth === "string") {
          this.appCard.appCardFront.cardExpirationMonth = cardExpirationMonth;
       } else {
-        throw new Error("The card expiration date month is not a string");
+        throw new Error("The card expiration month is not a string");
       }
     } else {
       throw new Error("The parameter must be a custom event");
     }
   }
 
-  handleCardExpirationDateYear(customEvent) {
+  /**
+   * Handle card expiration year update.
+   * 
+   * @param {CustomEvent} customEvent.
+   */
+  handleCardExpirationYearUpdate(customEvent) {
     if (customEvent instanceof CustomEvent) {
       const { cardExpirationYear } = customEvent.detail;
       if (typeof cardExpirationYear === "string") {
          this.appCard.appCardFront.cardExpirationYear = cardExpirationYear;
       } else {
-        throw new Error("The card expiration date year is not a string");
+        throw new Error("The card expiration year is not a string");
       }
     } else {
       throw new Error("The parameter must be a custom event");
     }
   }
 
-  handleCardCvc(customEvent) {
+  /**
+   * Handle card cvc update.
+   * 
+   * @param {CustomEvent} customEvent.
+   */
+  handleCardCvcUpdate(customEvent) {
     if (customEvent instanceof CustomEvent) {
       const { cardCvc } = customEvent.detail;
       if (typeof cardCvc === "string") {

@@ -1,23 +1,36 @@
 class AppFormMessage extends HTMLParagraphElement {
+  #message;
   #initialCall = true;
 
+  /**
+   * @constructor.
+   */
   constructor() {
     super();
   }
 
+  /**
+   * Get the message.
+   * 
+   * @returns {string} The message.
+   */
   get message() {
-    if (this.hasOwnProperty("_message")) {
-      return this._message;
-    } else {
-      return "";
-    }
+    return this.#message === null ? this.#message : "";
   }
 
+  /**
+   * Set the message.
+   * 
+   * @param {string} message - The message.
+   */
   set message(message) {
-    this._message = message;
+    this.#message = message;
     this.textContent = this.message;
   }
 
+  /**
+   * Connected callback.
+   */
   connectedCallback() {
     if (this.#initialCall) {
       this.classList.add("form__error");
