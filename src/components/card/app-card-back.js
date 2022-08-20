@@ -49,12 +49,13 @@ class AppCardBack extends HTMLDivElement {
    */
   connectedCallback() {
     if (this.#initialCall) {
-      this.classList.add("card__back");
+      this.classList.add("card__face", "card__face--back");
       this.imageElement.classList.add("card__image");
       this.svgElement.classList.add("card__overlay");
       this.cvcElement.classList.add("card__text", "card__text--body", "card__text--uppercase");
       this.imageElement.setAttribute("src", backgroundImage);
       this.imageElement.setAttribute("alt", "bank card back illustration");
+      this.imageElement.setAttribute("draggable", "false");
       this.svgElement.setAttribute("viewbox", "0 0 447 245");
       this.cvcElement.setAttribute("x", "360");
       this.cvcElement.setAttribute("y", "126");

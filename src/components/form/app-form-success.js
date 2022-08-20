@@ -25,6 +25,7 @@ class AppFormSuccess extends HTMLDivElement {
       this.descriptionElement.classList.add("success-view__description");
       this.buttonElement.classList.add("success-view__button");
       this.imageElement.setAttribute("src", iconImage);
+      this.imageElement.setAttribute("draggable", "false");
       this.imageElement.setAttribute("alt", "Icon complete");
       this.buttonElement.setAttribute("type", "button");
       this.titleElement.textContent = "thank you!";

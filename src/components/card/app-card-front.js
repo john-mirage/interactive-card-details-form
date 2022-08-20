@@ -139,7 +139,7 @@ class AppCardFront extends HTMLDivElement {
    */
   connectedCallback() {
     if (this.#initialCall) {
-      this.classList.add("card__front");
+      this.classList.add("card__face", "card__face--front");
       this.imageElement.classList.add("card__image");
       this.svgElement.classList.add("card__overlay");
       this.numberElement.classList.add("card__text", "card__text--heading");
@@ -147,6 +147,7 @@ class AppCardFront extends HTMLDivElement {
       this.expirationElement.classList.add("card__text", "card__text--body");
       this.imageElement.setAttribute("src", backgroundImage);
       this.imageElement.setAttribute("alt", "bank card front illustration");
+      this.imageElement.setAttribute("draggable", "false");
       this.svgElement.setAttribute("viewBox", "0 0 447 245");
       this.svgImageElement.setAttribute("x", "20");
       this.svgImageElement.setAttribute("y", "20");
