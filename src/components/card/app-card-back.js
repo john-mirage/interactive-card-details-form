@@ -56,7 +56,7 @@ class AppCardBack extends HTMLDivElement {
       this.imageElement.setAttribute("src", backgroundImage);
       this.imageElement.setAttribute("alt", "bank card back illustration");
       this.imageElement.setAttribute("draggable", "false");
-      this.svgElement.setAttribute("viewbox", "0 0 447 245");
+      this.svgElement.setAttribute("viewBox", "0 0 447 245");
       this.cvcElement.setAttribute("x", "360");
       this.cvcElement.setAttribute("y", "126");
       this.svgElement.append(this.cvcElement);
